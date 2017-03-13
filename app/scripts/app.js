@@ -10,7 +10,9 @@ var App = angular
     'ngTouch',
     'myWebApp.config',
     'classy',
-    'ui.router'
+    'ui.router',
+    'ui.select',
+    'ui-notification'
   ])
   .run(['$rootScope', '$state', function($rootScope, $state) {
         $rootScope.$on('$stateChangeStart', function(event, toState) {

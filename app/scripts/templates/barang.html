@@ -1,15 +1,263 @@
-<div class="col-md-3">
+<div class="col-md-2">
   <!-- Widget: user widget style 1 -->
   <div class="box box-widget widget-user-2">
     <div class="box-footer no-padding">
       <ul class="nav nav-stacked">
-        <li class="active"><a href="">Sertifikat Berlaku</a></li>
-        <li><a href="">Sertifikat Tidak Berlaku</a></li>
+        <li class="{{state.isBerlaku ? 'active':''}}" ng-click="onClick().isBerlaku(true)"><a href="">Sertifikat Berlaku</a></li>
+        <li class="{{state.isBerlaku ? '':'active'}}" ng-click="onClick().isBerlaku(false)"><a href="">Sertifikat Tidak Berlaku</a></li>
       </ul>
     </div>
   </div>
   <!-- /.widget-user -->
 </div>
-<div class="col-md-9">
-  <h1>Halaman Barang Ber-SNI</h1>
+<div class="col-md-10">
+  <div class="box">
+    <div class="box-header">
+      <h3 class="box-title"></h3>
+      <div class="col-md-4 pull-left">
+        <div class="row" style="margin-right: 5px">
+          <ui-select-object placeholder="Pilih pencarian.." ng-model="var.searchType" data="var.searchTypeList" selected-text="text"></ui-select-object>
+        </div>
+      </div>
+      <div class="col-md-4 pull-left">
+        <div class="row">
+          <div class="input-group">
+            <input name="table_search" class="form-control input-sm pull-right" placeholder="Search" type="text">
+            <div class="input-group-btn">
+              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body table-responsive no-padding">
+      <table class="table table-striped" style="width: 1500px !important">
+        <tbody>
+          <tr>
+            <th style="width: 10px">#</th>
+            <th>Jenis Produk</th>
+            <th>Merk</th>
+            <th>Nama Perusahaan</th>
+            <th>Alamat</th>
+            <th>No. SNI</th>
+            <th>Judul SNI</th>
+            <th>No. Sertifikat</th>
+            <th>No. Lisensi</th>
+            <th>Tanggal Penerbitan</th>
+            <th>Tanggal Berakhir</th>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+            <td>Update software</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.box-body -->
+  </div>
 </div>
