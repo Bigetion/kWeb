@@ -36,6 +36,7 @@
       _onInit: function () {
         var _this = this;
         _this.onLoad().getUserList();
+        _this.onLoad().getRoleOptions();
       },
       onLoad: function () {
         var _this = this;
@@ -59,7 +60,6 @@
           isAdd: function (condition) {
             _this.state.isAdd = condition;
             if (condition) {
-              _this.onLoad().getRoleOptions();
               _this.var.input = {
                 nama: '',
                 namaUser: '',
@@ -73,7 +73,6 @@
           isEdit: function (condition, row) {
             _this.state.isEdit = condition;
             if (condition) {
-              _this.onLoad().getRoleOptions();
               _this.var.rowEdit = row;
               var roleIndex = _this.lodash.findIndex(_this.var.options.roleOptions, { id_role: row.id_role });
               _this.var.input = {
