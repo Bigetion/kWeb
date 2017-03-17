@@ -16,7 +16,6 @@ var App = angular
         'ui-notification',
         'ngLodash',
         'ngTagsInput',
-        'ngMaterial',
         'angular-loading-bar',
         'smart-table',
         'angularMoment'
