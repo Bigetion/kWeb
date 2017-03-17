@@ -36,6 +36,12 @@
                                 }
                                 if (response.success_message) {
                                     _this.$cookies.put('token', response.jwt);
+                                    _this.AuthService.getUserInfo().then(function (response) {
+                                        _this.$rootScope.idRole = response.idRole;
+                                        _this.$rootScope.idUser = response.idUser;
+                                        _this.$rootScope.username = response.username;
+                                        _this.$rootScope.roleName = response.roleName;
+                                    });
                                     _this.$location.path('/');
                                 }
                             });

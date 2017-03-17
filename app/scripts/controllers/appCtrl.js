@@ -18,9 +18,9 @@
         methods: {
             _onInit: function () {
                 var _this = this;
-                _this.onLoad().getIdRole();
+                _this.onLoadApp().getUserInfo();
             },
-            onLoad: function () {
+            onLoadApp: function () {
                 var _this = this;
                 return {
                     getActiveClass: function (currentState) {
@@ -28,19 +28,26 @@
                             return 'active';
                         }
                     },
-                    getIdRole: function () {
-                        _this.AuthService.getIdRole().then(function (response) {
-                            _this.$rootScope.idRole = response.idRole;
-                        })
+                    getUserInfo: function () {
+                        if (!_this.$rootScope.idRole) {
+                            _this.AuthService.getUserInfo().then(function (response) {
+                                _this.$rootScope.idRole = response.idRole;
+                                _this.$rootScope.idUser = response.idUser;
+                                _this.$rootScope.username = response.username;
+                                _this.$rootScope.roleName = response.roleName;
+                            });
+                        }
                     }
                 };
             },
-            onClick: function () {
+            onClickApp: function () {
                 var _this = this;
                 return {
                     logout: function () {
                         _this.AuthService.logout().then(function (response) {
-                            _this.$location.path('/login');
+                            _this.$rootScope.idRole = 2;
+                            _this.$rootScope.idUser = 2;
+                            _this.$location.path('/');
                             _this.$cookies.remove("token");
                         });
                     }

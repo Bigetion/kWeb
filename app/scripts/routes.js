@@ -48,5 +48,32 @@
                     }
                 }
             })
+            .state('perusahaan', {
+                url: "/manajemen-perusahaan",
+                views: {
+                    "content": {
+                        controller: 'PerusahaanCtrl',
+                        templateUrl: "scripts/templates/perusahaan.html"
+                    }
+                }
+            })
+            .state('sertifikat', {
+                url: "/manajemen-sertifikat",
+                views: {
+                    "content": {
+                        controller: 'BarangCtrl',
+                        templateUrl: "scripts/templates/barang.html"
+                    }
+                }
+            })
+            .state('pengguna', {
+                url: "/manajemen-pengguna",
+                views: {
+                    "content": {
+                        controller: 'UserCtrl',
+                        templateUrl: "scripts/templates/user.html"
+                    }
+                }
+            })
     }]);
 })();

@@ -37,6 +37,9 @@ html,
 body {
   min-height: 100%;
   font-family: 'Roboto-Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #ECF0F5;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .layout-boxed html,
 .layout-boxed body {
@@ -56,6 +59,7 @@ body {
   min-height: 100%;
   position: static;
   overflow: hidden;
+  background: transparent !important;
 }
 .wrapper:before,
 .wrapper:after {
@@ -4770,6 +4774,7 @@ table.text-center th {
   .ui-select-container.ng-invalid.ng-touched>.ui-select-match,
 .ng-invalid.ng-touched>.ui-select-container .ui-select-match,
 input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched,
 tags-input.ng-invalid.ng-touched,
 ui-select-infinite.ng-invalid.ng-touched,
 select.error-required-select,
@@ -4801,13 +4806,13 @@ md-datepicker.ng-invalid-required.ng-touched~.error-required,
 md-datepicker.ng-invalid-mindate.ng-touched~.error-mindate,
 md-datepicker.ng-invalid-maxdate.ng-touched~.error-maxdate,
 input.ng-invalid-required.ng-touched~.error-required,
-input.ng-invalid-required.ng-touched~.error-required,
+textarea.ng-invalid-required.ng-touched~.error-required,
 input.ng-invalid-email.ng-touched~.error-email,
 input.ng-invalid-equal.ng-touched~.error-equal,
 input.ng-invalid-alphanumeric.ng-touched~.error-alphanumeric,
 input.ng-invalid-pattern.ng-touched~.error-pattern,
 textarea.ng-invalid-pattern.ng-touched~.error-pattern,
-input.ng-invalid-number-only.ng-touched~.error-number-only,
+input.ng-invalid-numeric.ng-touched~.error-numeric,
 input.ng-invalid-containsnumber.ng-touched~.error-containsnumber,
 input.ng-invalid-case.ng-touched~.error-case,
 input.ng-invalid-maxlength.ng-touched~.error-maxlength,
@@ -4816,6 +4821,8 @@ input.ng-invalid-minlength.ng-touched~.error-minlength,
 input.ng-touched~.invalid-input,
 input.ng-invalid-address.ng-touched~.error-address,
 input.ng-invalid-phone.ng-touched~.error-phone,
+input.ng-invalid-nosymbol.ng-touched~.error-nosymbol,
+input.ng-invalid-nospace.ng-touched~.error-nospace,
 select~.error-required-select,
 .ng-invalid-parse.ng-touched~.error-parse,
 .ng-invalid-exist.ng-touched~.error-exist,
@@ -4858,11 +4865,13 @@ input.ng-invalid-equal.ng-touched~.error-equal:after,
 input.ng-invalid-alphanumeric.ng-touched~.error-alphanumeric:after,
 input.ng-invalid-pattern.ng-touched~.error-pattern:after,
 textarea.ng-invalid-pattern.ng-touched~.error-pattern:after,
-input.ng-invalid-number-only.ng-touched~.error-number-only:after,
+input.ng-invalid-numeric.ng-touched~.error-numeric:after,
 input.ng-invalid-containsnumber.ng-touched~.error-containsnumber:after,
 input.ng-invalid-case.ng-touched~.error-case:after,
 input.ng-invalid-maxlength.ng-touched~.error-maxlength:after,
 input.ng-invalid-minlength.ng-touched~.error-minlength:after,
+input.ng-invalid-nosymbol~.error-nosymbol:after,
+input.ng-invalid-nospace~.error-nospace:after,
 input.ng-touched~.invalid-input:after,
 select~.error-required-select:after,
 .ng-invalid-maxlength.ng-touched~.error-maxlength:after,
@@ -4913,4 +4922,70 @@ input.narrow-input {
     box-shadow: none;
     -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+
+tags-input .tags {
+    border: 1px solid #D2D6DE !important;
+    box-shadow: 0px 0px 0px 0px lightgrey inset !important; 
+}
+
+md-datepicker {
+    border: 1px solid #D2D6DE;
+    padding: 5px 0;
+    margin-right: 0px !important;
+}
+
+.md-datepicker-input {
+    cursor: pointer;
+    min-width: 100px !important;
+}
+
+.md-datepicker-input-container {
+  border-bottom: 0px;
+}
+
+.md-button.md-icon-button {
+    margin: 0px;
+}
+
+.md-icon-button + .md-datepicker-input-container {
+    margin-left: 5px;
+}
+.md-datepicker-input-container.md-datepicker-focused {
+    border-bottom: 0px; 
+}
+
+.uib-datepicker-popup  .btn {
+  border: none;
+}
+
+#loading-bar .bar {
+  background-color: #F5ED0F;
+  height: 2px;
+}
+
+#loading-bar-spinner .spinner-icon {
+  width: 20px;
+  height: 20px;
+  border-top-color:  #F5ED0F;
+  border-left-color: #F5ED0F;
+}
+
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
 }

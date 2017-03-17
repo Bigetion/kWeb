@@ -12,8 +12,8 @@
             logout: function() {
                 return HttpService.execute(API_BASE_URL + 'login/logout', {}, "Logout");
             },
-            getIdRole: function(){
-                return HttpService.execute(API_BASE_URL + 'page/data/getIdRole', {}, "Get Id Role");
+            getUserInfo: function(){
+                return HttpService.execute(API_BASE_URL + 'page/data/getUserInfo', {}, "Get User Info");
             }
         }
     }])

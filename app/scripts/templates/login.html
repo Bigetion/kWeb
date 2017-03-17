@@ -7,16 +7,16 @@
     <!--<p class="login-box-msg">Sign in to start your session</p>-->
     <form name="formLogin" novalidate="novalidate" accessible-form="" on-submit="onClick().submitLogin(formLogin)">
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Username" ng-required="true" ng-model="var.username">
-        <span class="error-required hidden">Required</span>
+        <input class="form-control" placeholder="Nama user" ng-required="true" ng-model="var.username">
+        <span class="error-required hidden">Harap diisi</span>
       </div>
       <div class="form-group has-feedback">
         <input class="form-control" placeholder="Password" ng-required="true" type="password" ng-model="var.password">
-        <span class="error-required hidden">Required</span>
+        <span class="error-required hidden">Harap diisi</span>
       </div>
       <div class="row">
         <div class="col-xs-8">
-          <button ui-sref="main()" type="submit" class="btn btn-danger btn-block btn-flat">Kembali</button>
+          <button ui-sref="main()" type="button" class="btn btn-danger btn-block btn-flat">Kembali</button>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
@@ -26,5 +26,6 @@
       </div>
     </form>
   </div>
+  <div ng-if="var.message.error" class="alert alert-danger mt-10" ng-style="{'margin-top':'10px'}">{{var.message.error}}</div>
   <!-- /.login-box-body -->
 </div>

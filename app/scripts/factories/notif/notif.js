@@ -3,10 +3,10 @@ App.factory('Notif', ['$uibModal', function($uibModal) {
     return {
         confirmation: function(config) {
             var modalInstance = $uibModal.open({
-                animation: true,
+                animation: false,
                 ariaLabelledBy: 'modal-title',
                 ariaDescribedBy: 'modal-body',
-                templateUrl: 'scripts/root/factories/notif/templates/confirmationModal.html',
+                templateUrl: 'scripts/factories/notif/templates/confirmationModal.html',
                 controller: 'ConfirmationModalCtrl',
                 size: 'sm',
                 appendTo: angular.element(document.body),

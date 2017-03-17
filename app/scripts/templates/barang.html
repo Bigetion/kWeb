@@ -1,5 +1,4 @@
-<div class="col-md-2">
-  <!-- Widget: user widget style 1 -->
+<div class="col-md-2" ng-if="idRole==2">
   <div class="box box-widget widget-user-2">
     <div class="box-footer no-padding">
       <ul class="nav nav-stacked">
@@ -8,9 +7,13 @@
       </ul>
     </div>
   </div>
-  <!-- /.widget-user -->
 </div>
-<div class="col-md-10">
+<div class="col-md-2" ng-if="idRole!=2">
+  <ng-include src="'scripts/templates/leftMenu.html'"></ng-include>
+</div>
+<div class="col-md-10" ng-if="!state.isAddSertifikat && !state.isEditSertifikat && !state.isAddLisensi && !state.isEditLisensi" st-safe-src="collection.produk.data"
+  st-table="rowCollectionProduk">
+  <button ng-if="idRole==4" ng-click="onClick().isAddSertifikat(true)" class="btn btn-primary" style="margin-bottom: 10px">Tambah Sertifikat</button>
   <div class="box">
     <div class="box-header">
       <h3 class="box-title"></h3>
@@ -22,9 +25,9 @@
       <div class="col-md-4 pull-left">
         <div class="row">
           <div class="input-group">
-            <input name="table_search" class="form-control input-sm pull-right" placeholder="Search" type="text">
+            <input name="table_search" st-search="{{var.searchType.id || ''}}" class="form-control pull-right" placeholder="Cari" type="text">
             <div class="input-group-btn">
-              <button class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+              <button class="btn btn-default"><i class="fa fa-search"></i></button>
             </div>
           </div>
         </div>
@@ -32,228 +35,43 @@
     </div>
     <!-- /.box-header -->
     <div class="box-body table-responsive no-padding">
-      <table class="table table-striped" style="width: 1500px !important">
-        <tbody>
+      <table class="table table-striped">
+        <tbody ng-style="{'width':'1800px', 'display':'block'}">
           <tr>
-            <th style="width: 10px">#</th>
-            <th>Jenis Produk</th>
-            <th>Merk</th>
-            <th>Nama Perusahaan</th>
-            <th>Alamat</th>
-            <th>No. SNI</th>
-            <th>Judul SNI</th>
-            <th>No. Sertifikat</th>
-            <th>No. Lisensi</th>
-            <th>Tanggal Penerbitan</th>
-            <th>Tanggal Berakhir</th>
+            <th>#</th>
+            <th st-sort="jenis_produk">Jenis Produk</th>
+            <th st-sort="merk">Merk</th>
+            <th st-sort="nama_penanggung_jawab" class="col-md-2">Nama Perusahaan</th>
+            <th st-sort="alamat_penanggung_jawab" class="col-md-2">Alamat</th>
+            <th st-sort="no_SNI">No. SNI</th>
+            <th st-sort="judul_SNI">Judul SNI</th>
+            <th st-sort="no_sertifikat">No. Sertifikat</th>
+            <th st-sort="no_lisensi">No. Lisensi</th>
+            <th st-sort="tgl_terbit_sertifikat">Tanggal Penerbitan</th>
+            <th st-sort="tgl_berakhir_sertifikat">Tanggal Berakhir</th>
+            <th ng-if="idRole!=2">Aksi</th>
           </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-          </tr>
-          <tr>
-            <td>1.</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
-            <td>Update software</td>
+          <tr ng-repeat="row in rowCollectionProduk">
+            <td>{{$index+1}}</td>
+            <td>{{row.jenis_produk}}</td>
+            <td>{{row.merk}}</td>
+            <td>{{row.nama_penanggung_jawab}}</td>
+            <td>{{row.alamat_penanggung_jawab}}</td>
+            <td>{{row.no_SNI}}</td>
+            <td>{{row.judul_SNI}}</td>
+            <td>{{row.no_sertifikat}}</td>
+            <td>{{row.no_lisensi || '-'}}</td>
+            <td>{{row.tgl_terbit_sertifikat | amDateFormat:'DD MMMM YYYY'}}</td>
+            <td>{{row.tgl_berakhir_sertifikat | amDateFormat:'DD MMMM YYYY'}}</td>
+            <td ng-if="idRole==1 || idRole==4">
+              <button class="btn btn-link btn-xs" ng-click="onClick().isEditSertifikat(true, row)"><i class="fa fa-edit"></i></button>
+              <button class="btn btn-link btn-xs" ng-click="onClick().isDeleteSertifikat(row, $index)"><i class="fa fa-trash"></i></button>
+            </td>
+            <td ng-if="idRole==3">
+              <button ng-if="row.no_lisensi==''" ng-click="onClick().isAddLisensi(true, row)" class="btn btn-link btn-xs"><i class="fa fa-plus"></i></button>
+              <button ng-if="row.no_lisensi!=''" ng-click="onClick().isEditLisensi(true, row)" class="btn btn-link btn-xs"><i class="fa fa-edit"></i></button>
+              <button ng-if="row.no_lisensi!=''" ng-click="onClick().isDeleteLisensi(row, $index)" class="btn btn-link btn-xs"><i class="fa fa-trash"></i></button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -261,3 +79,5 @@
     <!-- /.box-body -->
   </div>
 </div>
+<ng-include ng-if="state.isAddSertifikat || state.isEditSertifikat" src="'scripts/templates/tambahSertifikat.html'"></ng-include>
+<ng-include ng-if="state.isAddLisensi || state.isEditLisensi" src="'scripts/templates/tambahLisensi.html'"></ng-include>

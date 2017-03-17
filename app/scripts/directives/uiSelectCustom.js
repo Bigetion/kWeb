@@ -12,13 +12,14 @@
         search: '@',
         placeholder: '@',
         onChange: '&',
-        disabled: '=?'
+        ngDisabled: '=?',
+        ngRequired: '=?'
       },
       link: function (scope, element) {
         scope.onSelect = function () {
           scope.onChange();
         };
-        element.replaceWith($compile('<ui-select ng-model="$parent.ngModel" ng-disabled="$parent.disabled" backspace-disabled="true" search-enabled="{{$parent.search}}" theme="select2" on-select="$parent.onSelect()">' +
+        element.replaceWith($compile('<ui-select ng-required="$parent.ngRequired" ng-model="$parent.ngModel" ng-disabled="$parent.ngDisabled" backspace-disabled="true" search-enabled="{{$parent.search}}" theme="select2" on-select="$parent.onSelect()">' +
           '<ui-select-match placeholder="{{$parent.placeholder}}">{{$select.selected[$parent.selectedText]}}</ui-select-match>' +
           '<ui-select-choices repeat="item in $parent.data | filter: {' + scope.selectedText + ':$select.search}">' +
           '<span ng-bind-html="item[$parent.selectedText] | highlight: $select.search"></span>' +

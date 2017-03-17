@@ -1,0 +1,118 @@
+<div class="col-md-2" ng-if="idRole!=2">
+  <ng-include src="'scripts/templates/leftMenu.html'"></ng-include>
+</div>
+<div class="col-md-10" ng-hide="state.isAdd || state.isEdit">
+  <button ng-if="idRole==1" ng-click="onClick().isAdd(true)" class="btn btn-primary" style="margin-bottom: 10px">Tambah Perusahaan</button>
+  <div class="box">
+    <div class="box-body table-responsive no-padding">
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th style="width: 20px">#</th>
+            <th>Nama Perusahaan</th>
+            <th>Alamat Perusahaan</th>
+            <th ng-if="idRole==1">Aksi</th>
+          </tr>
+          <tr ng-repeat="row in collection.perusahaan.data">
+            <td>{{$index + 1}}</td>
+            <td>{{row.nama_penanggung_jawab}}</td>
+            <td>{{row.alamat_penanggung_jawab}}</td>
+            <td ng-if="idRole==1">
+              <button class="btn btn-link btn-xs" ng-click="onClick().isEdit(true, row)"><i class="fa fa-edit"></i></button>
+              <button ng-if="row.id_user!=1" class="btn btn-link btn-xs" ng-click="onClick().delete(row, $index)"><i class="fa fa-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /.box-body -->
+  </div>
+</div>
+<div class="col-md-10" ng-show="state.isAdd || state.isEdit">
+  <div class="box box-primary" ng-if="state.isAdd">
+    <div class="box-header with-border">
+      <h3 class="box-title">Tambah Perusahaan</h3>
+    </div>
+    <form ng-if="state.isAdd" name="formAddUser" novalidate="novalidate" accessible-form="" on-submit="onSubmit().add(formAddUser)">
+      <form ng-if="state.isEdit" name="formEditUser" novalidate="novalidate" accessible-form="" on-submit="onSubmit().edit(formEditUser)">
+        <div class="box-body">
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Nama Penanggung Jawab Produk 
+            <h6><i>Ket : diisi nama pemilik merek atau nama perwakilan pemilik merek produk yang diedarkan di wilayah RI sesuai dengan pendaftaran di Kementerian Hukum dan HAM RI</i></h6>
+          </label>
+            <div class="col-sm-7">
+              <input class="form-control" ng-required="true" ng-model="var.input.namaPJProduk">
+              <span class="error-required hidden">Harap diisi</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Alamat Penanggung Jawab Produk
+            <h6><i>Ket : diisi nama jalan, nomor, RT/RW, Kelurahan, Kecamatan</i></h6>
+          </label>
+            <div class="col-sm-7">
+              <textarea class="form-control" ng-required="true" ng-model="var.input.alamatPJProduk"></textarea>
+              <span class="error-required hidden">Harap diisi</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Provinsi</label>
+            <div class="col-sm-7">
+              <input class="form-control" ng-required="true" ng-model="var.input.provinsi">
+              <span class="error-required hidden">Harap diisi</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Kota Madya / Kabupaten</label>
+            <div class="col-sm-7">
+              <input class="form-control" ng-required="true" ng-model="var.input.kabupaten">
+              <span class="error-required hidden">Harap diisi</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Kode Pos</label>
+            <div class="col-sm-7">
+              <input class="form-control" ng-required="true" ng-model="var.input.kodePos">
+              <span class="error-required hidden">Harap diisi</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Status Penanggung Jawab Produk
+            <h6><i>Ket : diisi importir pemilik merk atau distributor atau perwakilan resmi produsen atau pabrikan lokal yang memproduksi untuk merek lokal/asing </i></h6>
+          </label>
+            <div class="col-sm-7">
+              <input class="form-control" ng-required="true" ng-model="var.input.statusPJProduk">
+              <span class="error-required hidden">Harap diisi</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Nomor Telpon / HP</label>
+            <div class="col-sm-7">
+              <input validate-input is-numeric="true" class="form-control" ng-required="true" ng-model="var.input.nomorTelpon">
+              <span class="error-required hidden">Harap diisi</span>
+              <span class="error-numeric hidden">Nomor telpon tidak valid</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Website</label>
+            <div class="col-sm-7">
+              <input validate-input is-valid-url="true" type="text" class="form-control" ng-required="true" ng-model="var.input.website">
+              <span class="error-required hidden">Harap diisi</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Email</label>
+            <div class="col-sm-7">
+              <input validate-input is-email="true" class="form-control" ng-required="true" ng-model="var.input.email">
+              <span class="error-required hidden">Harap diisi</span>
+              <span class="error-email hidden">Email tidak valid</span>
+            </div>
+          </div>
+        </div>
+        <div class="box-footer">
+          <button type="submit" class="btn btn-success">Simpan</button>
+          <button ng-if="state.isAdd" type="button" class="btn btn-danger" ng-click="onClick().isAdd(false)">Batal</button>
+          <button ng-if="state.isEdit" type="button" class="btn btn-danger" ng-click="onClick().isEdit(false)">Batal</button>
+        </div>
+      </form>
+  </div>
+</div>

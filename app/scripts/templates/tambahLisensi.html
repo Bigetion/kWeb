@@ -1,0 +1,84 @@
+<div class="col-md-10">
+  <div class="box box-info">
+    <div class="box-header with-border">
+      <h3 ng-if="state.isAddLisensi" class="box-title">Input Lisensi</h3>
+      <h3 ng-if="state.isEditLisensi" class="box-title">Update Lisensi</h3>
+    </div>
+    <!-- /.box-header -->
+    <!-- form start -->
+    <form class="form-horizontal" name="formLisensi" novalidate="novalidate" accessible-form="" on-submit="onSubmit().lisensi(formLisensi)">
+      <div class="box-body">
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Merk</label>
+          <div class="col-sm-6">
+            <input class="form-control" ng-disabled="true" value="{{var.rowSelected.merk}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">No. Sertifikat</label>
+          <div class="col-sm-6">
+            <input class="form-control" ng-disabled="true" value="{{var.rowSelected.no_sertifikat}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Masa Berlaku Sertifikat</label>
+          <div class="col-sm-3">
+            <input class="form-control" ng-disabled="true" value="{{var.rowSelected.tgl_berakhir_sertifikat | amDateFormat:'DD MMMM YYYY'}}"> 
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Tipe Produk</label>
+          <div class="col-sm-6">
+            <input class="form-control" ng-disabled="true" value="{{var.rowSelected.jenis_produk}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Penanggung Jawab Produk</label>
+          <div class="col-sm-6">
+            <input class="form-control" ng-disabled="true" value="{{var.rowSelected.nama_penanggung_jawab}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">No. SNI</label>
+          <div class="col-sm-6">
+            <input class="form-control" ng-disabled="true" value="{{var.rowSelected.no_SNI}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Judul SNI</label>
+          <div class="col-sm-6">
+            <textarea class="form-control" ng-disabled="true">{{var.rowSelected.judul_SNI}}</textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">No. Lisensi</label>
+          <div class="col-sm-6">
+            <input ng-required="true" ng-model="var.inputLisensi.nomorLisensi" class="form-control" autofocus>
+            <span class="error-required hidden">Harap diisi</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-4 control-label">Masa Berlaku Lisensi</label>
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="col-sm-5">
+                <boot-datepicker ng-model="var.inputLisensi.masaBerlakuLisensi.from" max-date="var.inputLisensi.masaBerlakuLisensi.to"></boot-datepicker>
+              </div>
+              <div class="col-sm-1 control-label">s/d</div>
+              <div class="col-sm-5">
+                <boot-datepicker ng-model="var.inputLisensi.masaBerlakuLisensi.to" min-date="var.inputLisensi.masaBerlakuLisensi.from"></boot-datepicker>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.box-body -->
+      <div class="box-footer">
+        <button type="submit" class="btn btn-info pull-right">Simpan</button>
+        <button ng-if="state.isAddLisensi" ng-click="onClick().isAddLisensi(false)" type="button" class="btn btn-default">Batal</button>
+        <button ng-if="state.isEditLisensi" ng-click="onClick().isEditLisensi(false)" type="button" class="btn btn-default">Batal</button>
+      </div>
+      <!-- /.box-footer -->
+    </form>
+  </div>
+</div>
