@@ -3,19 +3,19 @@
     App.service('BarangService', ['$http', 'HttpService', 'API_BASE_URL', '$filter', function ($http, HttpService, API_BASE_URL, $filter) {
         return {
             getSertifikatBerlaku: function () {
-                return HttpService.execute(API_BASE_URL + 'page/sertifikat/getSertifikatBerlaku', {}, "Get Data");
+                return HttpService.get(API_BASE_URL + 'page/sertifikat/getSertifikatBerlaku', {}, "Get Data");
             },
             getSertifikatTidakBerlaku: function () {
-                return HttpService.execute(API_BASE_URL + 'page/sertifikat/getSertifikatTidakBerlaku', {}, "Get Data");
+                return HttpService.get(API_BASE_URL + 'page/sertifikat/getSertifikatTidakBerlaku', {}, "Get Data");
             },
             getData: function () {
-                return HttpService.execute(API_BASE_URL + 'page/sertifikat/getData', {}, "Get Data");
+                return HttpService.get(API_BASE_URL + 'page/sertifikat/getData', {}, "Get Data");
             },
             getPerusahaanOptions: function () {
-                return HttpService.execute(API_BASE_URL + 'page/sertifikat/getPerusahaanOptions', {}, "Get Penanggung Jawab");
+                return HttpService.get(API_BASE_URL + 'page/sertifikat/getPerusahaanOptions', {}, "Get Penanggung Jawab");
             },
             getSNIOptions: function () {
-                return HttpService.execute(API_BASE_URL + 'page/sertifikat/getSNIOptions', {}, "Get SNI Options");
+                return HttpService.get(API_BASE_URL + 'page/sertifikat/getSNIOptions', {}, "Get SNI Options");
             },
             submitAddSertifikat: function (input) {
                 var namaPabrik = [];

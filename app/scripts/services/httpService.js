@@ -14,7 +14,6 @@
                     }
 
                     if (token) {
-                        // extendData.jwt = token;
                         headers['Authorization'] = 'Bearer ' + token;
                     }
                     data = angular.extend(extendData, data);
@@ -52,7 +51,6 @@
                     }
 
                     if (token) {
-                        // extendData.jwt = token;
                         headers['Authorization'] = 'Bearer ' + token;
                     }
                     data = angular.extend(extendData, data);
