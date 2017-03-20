@@ -84,8 +84,6 @@
       _onInit: function () {
         var _this = this;
         _this.onLoad().getData();
-        _this.onLoad().getPerusahaanOptions();
-        _this.onLoad().getSNIOptions();
       },
       onLoad: function () {
         var _this = this;
@@ -155,14 +153,15 @@
                   to: new Date()
                 }
               };
+              _this.onLoad().getPerusahaanOptions();
+              _this.onLoad().getSNIOptions();
             }
           },
           isEditSertifikat: function (condition, row) {
             _this.state.isEditSertifikat = condition;
             if (condition) {
               _this.var.rowSelected = row;
-              var pJProdukIndex = _this.lodash.findIndex(_this.var.options.perusahaanOptions, { id_perusahaan: _this.var.rowSelected.id_perusahaan });
-              var sniIndex = _this.lodash.findIndex(_this.var.options.sniOptions, { no_SNI: _this.var.rowSelected.no_SNI });
+
               var namaPabrik = [];
               var namaPabrikArray = _this.var.rowSelected.nama_pabrik.split(';');
               angular.forEach(namaPabrikArray, function (item) {
@@ -177,9 +176,7 @@
                 namaProduk: _this.var.rowSelected.nama_produk,
                 merk: _this.var.rowSelected.merk,
                 tipeProduk: _this.var.rowSelected.tipe_produk,
-                pJProduk: _this.var.options.perusahaanOptions[pJProdukIndex],
                 namaPabrik: namaPabrik,
-                sni: _this.var.options.sniOptions[sniIndex],
                 statusPenerapan: statusPenerapan,
                 skemaSertifikasi: _this.var.rowSelected.skema_sertifikasi,
                 nomorSertifikat: _this.var.rowSelected.no_sertifikat,
@@ -188,11 +185,23 @@
                   to: new Date(moment(_this.var.rowSelected.tgl_berakhir_sertifikat)),
                 }
               }
+
+              _this.BarangService.getPerusahaanOptions().then(function (response) {
+                _this.var.options.perusahaanOptions = response.data;
+                var pJProdukIndex = _this.lodash.findIndex(_this.var.options.perusahaanOptions, { id_perusahaan: _this.var.rowSelected.id_perusahaan });
+                _this.var.input.pJProduk = _this.var.options.perusahaanOptions[pJProdukIndex];
+              });
+
+              _this.BarangService.getSNIOptions().then(function (response) {
+                _this.var.options.sniOptions = response.data;
+                var sniIndex = _this.lodash.findIndex(_this.var.options.sniOptions, { no_SNI: _this.var.rowSelected.no_SNI });
+                _this.var.input.sni = _this.var.options.sniOptions[sniIndex];
+              });
             }
           },
           isDeleteSertifikat: function (row, index) {
             var deleteRow = function () {
-              _this.BarangService.submitDeleteSertifikat(row).then(function(response){
+              _this.BarangService.submitDeleteSertifikat(row).then(function (response) {
                 _this.collection.produk.data.splice(index, 1);
               });
             };
@@ -271,19 +280,19 @@
               } else if (_this.state.isEditSertifikat) {
                 _this.BarangService.submitEditSertifikat(_this.var.input).then(function (response) {
                   if (response.success_message) {
-                    _this.var.rowSelected.id_merk                 = _this.var.input.idMerk;
-                    _this.var.rowSelected.jenis_produk            = _this.var.input.jenisProduk;
-                    _this.var.rowSelected.nama_produk             = _this.var.input.namaProduk;
-                    _this.var.rowSelected.merk                    = _this.var.input.merk;
-                    _this.var.rowSelected.tipe_produk             = _this.var.input.tipeProduk;
-                    _this.var.rowSelected.nama_pabrik             = _this.var.input.namaPabrik;
-                    _this.var.rowSelected.nama_penanggung_jawab   = _this.var.input.pJProduk.nama_penanggung_jawab;
+                    _this.var.rowSelected.id_merk = _this.var.input.idMerk;
+                    _this.var.rowSelected.jenis_produk = _this.var.input.jenisProduk;
+                    _this.var.rowSelected.nama_produk = _this.var.input.namaProduk;
+                    _this.var.rowSelected.merk = _this.var.input.merk;
+                    _this.var.rowSelected.tipe_produk = _this.var.input.tipeProduk;
+                    _this.var.rowSelected.nama_pabrik = _this.var.input.namaPabrik;
+                    _this.var.rowSelected.nama_penanggung_jawab = _this.var.input.pJProduk.nama_penanggung_jawab;
                     _this.var.rowSelected.alamat_penanggung_jawab = _this.var.input.pJProduk.alamat_penanggung_jawab;
-                    _this.var.rowSelected.no_SNI                  = _this.var.input.sni.no_SNI;
-                    _this.var.rowSelected.judul_SNI               = _this.var.input.sni.judul_SNI;
-                    _this.var.rowSelected.status_penerapan        = _this.var.input.statusPenerapan;
-                    _this.var.rowSelected.no_sertifikat           = _this.var.input.nomorSertifikat;
-                    _this.var.rowSelected.tgl_terbit_sertifikat   = _this.var.input.masaBerlakuSertifikat.from;
+                    _this.var.rowSelected.no_SNI = _this.var.input.sni.no_SNI;
+                    _this.var.rowSelected.judul_SNI = _this.var.input.sni.judul_SNI;
+                    _this.var.rowSelected.status_penerapan = _this.var.input.statusPenerapan;
+                    _this.var.rowSelected.no_sertifikat = _this.var.input.nomorSertifikat;
+                    _this.var.rowSelected.tgl_terbit_sertifikat = _this.var.input.masaBerlakuSertifikat.from;
                     _this.var.rowSelected.tgl_berakhir_sertifikat = _this.var.input.masaBerlakuSertifikat.to;
                     _this.onClick().isEditSertifikat(false);
                   }
