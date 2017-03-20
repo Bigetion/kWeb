@@ -37,7 +37,6 @@ html,
 body {
   min-height: 100%;
   font-family: 'Roboto-Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  background-color: #ECF0F5;
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -52,7 +51,7 @@ body {
   font-weight: 400;
   overflow-x: hidden;
   overflow-y: auto;
-  background: #ECF0F5;
+  background: url('images/bg/bg.jpg') repeat fixed;
 }
 /* Layout */
 .wrapper {
@@ -125,7 +124,7 @@ body {
 .content-wrapper,
 .right-side {
   min-height: 100%;
-  background-color: #ecf0f5;
+  /*background-color: #ecf0f5;*/
   z-index: 800;
 }
 .main-footer {
@@ -224,6 +223,7 @@ a:focus {
   position: relative;
   max-height: 100px;
   z-index: 1030;
+  background-color: #e3e3e3;
 }
 .main-header > .navbar {
   -webkit-transition: margin-left 0.3s ease-in-out;
@@ -329,9 +329,14 @@ a:focus {
   padding: 0 15px;
   font-weight: 300;
   overflow: hidden;
+  background: #e3e3e3 !important;
 }
 .main-header .logo .logo-lg {
   display: block;
+}
+.main-header .logo .logo-lg img {
+  width: 100%;
+  height: 100%;
 }
 .main-header .logo .logo-mini {
   display: none;
@@ -421,7 +426,7 @@ a:focus {
   }
   .main-header .logo,
   .main-header .navbar {
-    width: 100%;
+    /*width: 100%;*/
     float: none;
   }
   .main-header .navbar {
@@ -3209,6 +3214,10 @@ table.text-center th {
   text-align: center;
   margin-bottom: 25px;
   font-weight: 300;
+}
+.login-logo img,
+.register-logo img{
+  width: 100% !important;
 }
 .login-logo a,
 .register-logo a {

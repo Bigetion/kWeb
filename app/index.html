@@ -27,7 +27,7 @@
   <!-- endbuild -->
 </head>
 
-<body class="hold-transition skin-green">
+<body class="hold-transition skin-blue">
   <div ui-view="login" ng-if="currentState=='login'" class="login-page"></div>
   <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -41,7 +41,7 @@
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>A</b>LT</span>
         <!-- logo for regular state and mobile devices -->
-        <span class="logo-lg"><b>BANG</b> BENI</span>
+        <span class="logo-lg"><img src="styles/img/Logo Master.png"></span>
       </a>
       <!-- Header Navbar: style can be found in header.less -->
       <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -90,12 +90,9 @@
       <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
-      <!--<div class="pull-right hidden-xs">
-        <b>Version</b> 2.3.0
-      </div>-->
-      <strong>Copyright &copy; 2017 by Komite Akreditasi Nasional
-    </footer>
+    <!--<footer class="main-footer">
+      <strong>Copyright &copy; 2017 by Komite Akreditasi Nasional</strong>
+    </footer>-->
   </div>
   <!-- ./wrapper -->
 
@@ -134,8 +131,12 @@
   <script src="scripts/config.js"></script>
   <script src="scripts/routes.js"></script>
 
+  <script src="scripts/services/httpService.js"></script>
+
   <script src="scripts/controllers/appCtrl.js"></script>
+
   <script src="scripts/controllers/mainCtrl.js"></script>
+  <script src="scripts/services/mainService.js"></script>
 
   <script src="scripts/controllers/barangCtrl.js"></script>
   <script src="scripts/services/barangService.js"></script>
@@ -148,8 +149,6 @@
   <script src="scripts/services/userService.js"></script>
 
   <script src="scripts/controllers/loginCtrl.js"></script>
-
-  <script src="scripts/services/httpService.js"></script>
   <script src="scripts/services/authService.js"></script>
 
   <script src="scripts/directives/accessibleForm.js"></script>

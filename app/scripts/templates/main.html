@@ -1,12 +1,24 @@
-<div class="col-md-12" ng-if="idRole==2">
-  <h1>Halaman Beranda</h1>
-</div>
-
-<div ng-if="idRole!=2">
-  <div class="col-md-2">
-    <ng-include src="'scripts/templates/leftMenu.html'"></ng-include>
+<div>
+  <div class="col-md-12" ng-if="idRole==2">
+    <!--<h1>Halaman Beranda</h1>-->
+    <div style="height: 305px">
+      <div uib-carousel active="0" interval="5000" no-wrap="false">
+        <div uib-slide ng-repeat="image in var.imageSlider" index="$index">
+          <img ng-src="{{image}}" style="margin:auto;width: 100%;">
+        </div>
+        <!--<div uib-slide index="1">
+          <img src="styles/css/images/bg/2.jpg" style="margin:auto;width: 100%;">
+        </div>-->
+      </div>
+    </div>
   </div>
-  <div class="col-md-10">
-    <h1>Selamat Datang <i>"{{username}}"</i></h1>
+
+  <div ng-if="idRole!=2">
+    <div class="col-md-2">
+      <ng-include src="'scripts/templates/leftMenu.html'"></ng-include>
+    </div>
+    <div class="col-md-10">
+      <h1>Selamat Datang <i>"{{username}}"</i></h1>
+    </div>
   </div>
 </div>

@@ -2,7 +2,7 @@
     'use strict';
     App.classy.controller({
         name: 'AppCtrl',
-        inject: ['$rootScope', '$scope', 'AuthService', '$location', '$cookies'],
+        inject: ['$rootScope', '$scope', 'AuthService', '$location', '$cookies', 'MainService'],
         data: {
             state: {
 
@@ -30,7 +30,7 @@
                     },
                     getUserInfo: function () {
                         if (!_this.$rootScope.idRole) {
-                            _this.AuthService.getUserInfo().then(function (response) {
+                            _this.MainService.getUserInfo().then(function (response) {
                                 _this.$rootScope.idRole = response.idRole;
                                 _this.$rootScope.idUser = response.idUser;
                                 _this.$rootScope.username = response.username;
