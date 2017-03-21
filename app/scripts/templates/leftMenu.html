@@ -1,4 +1,14 @@
-<div class="box box-primary">
+<div style="padding-top: 10px">
+<div class="box box-widget" ng-if="idRole==2">
+  <div class="box-footer no-padding">
+    <ul class="nav nav-stacked">
+      <li class="{{state.isBerlaku ? 'active':''}}" ng-click="onClick().isBerlaku(true)"><a href="">Sertifikat Berlaku</a></li>
+      <li class="{{state.isBerlaku ? '':'active'}}" ng-click="onClick().isBerlaku(false)"><a href="">Sertifikat Tidak Berlaku</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="box box-widget" ng-if="idRole!=2">
   <div class="box-body box-profile">
     <h3 class="profile-username text-center">{{username}}</h3>
     <p class="text-muted text-center">{{roleName}}</p>
@@ -9,4 +19,5 @@
       <li class="{{onLoadApp().getActiveClass('pengguna')}}"><a ui-sref="pengguna()">Manajemen Pengguna</a></li>
     </ul>
   </div>
+</div>
 </div>
