@@ -42,7 +42,7 @@
               <th st-sort="tgl_berakhir_sertifikat">Tanggal Berakhir</th>
               <th style="min-width: 80px" ng-if="idRole!=2">Aksi</th>
             </tr>
-            <tr ng-repeat="row in rowCollectionProduk">
+            <tr ng-hide="isGlobalLoading" ng-repeat="row in rowCollectionProduk">
               <td>{{$index+1}}</td>
               <td>{{row.jenis_produk}}</td>
               <td>{{row.merk}}</td>

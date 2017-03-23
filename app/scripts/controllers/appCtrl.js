@@ -2,7 +2,7 @@
     'use strict';
     App.classy.controller({
         name: 'AppCtrl',
-        inject: ['$rootScope', '$scope', 'AuthService', '$location', '$cookies', 'MainService'],
+        inject: ['$rootScope', '$scope', '$interval', 'AuthService', '$location', '$cookies', 'MainService'],
         data: {
             state: {
 
@@ -19,10 +19,20 @@
             _onInit: function () {
                 var _this = this;
                 _this.onLoadApp().getUserInfo();
+                _this.onLoadApp().globalTick();
+
+                _this.$interval(_this.onLoadApp().globalTick, 10);
             },
             onLoadApp: function () {
                 var _this = this;
                 return {
+                    globalTick: function(){
+                        if (angular.element('#loading-bar').length ) {
+                            _this.$rootScope.isGlobalLoading = true;
+                        }else{
+                            _this.$rootScope.isGlobalLoading = false;
+                        }
+                    },
                     getActiveClass: function (currentState) {
                         if (_this.$rootScope.currentState == currentState) {
                             return 'active';
