@@ -1,0 +1,82 @@
+<div class="col-md-12">
+  <div class="col-md-2">
+    <ng-include src="'scripts/templates/leftMenu.html'"></ng-include>
+  </div>
+  <div class="col-md-10" style="padding-top: 10px">
+    <div class="box box-widget" ng-hide="state.isChangePassword">
+      <div class="box-header with-border">
+        <h3 class="box-title">Profil Saya</h3>
+      </div>
+      <div class="box-body table-responsive no-padding">
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>Nama</th>
+                <td>: {{var.myProfile.nama}}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td>: {{var.myProfile.email}}</td>
+              </tr>
+              <tr>
+                <th>Jenis Role</th>
+                <td>: {{var.myProfile.role_name}}</td>
+              </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+      <div class="box-footer">
+        <button type="submit" class="btn btn-info pull-right" ng-click="onClick().isChangePassword(true)">Ubah Password</button>
+      </div>
+    </div>
+    <div class="box box-widget" ng-if="state.isChangePassword">
+      <div class="box-header with-border">
+        <h3 class="box-title">Ubah Password</h3>
+      </div>
+      <!-- /.box-header -->
+      <!-- form start -->
+      <form class="form-horizontal" name="formChangePassword" novalidate="novalidate" accessible-form="" on-submit="onSubmit().changePassword(formChangePassword)">
+        <div class="box-body">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-4 control-label">Password Lama</label>
+            <div class="col-sm-6">
+              <input class="form-control" ng-required="true" ng-model="var.input.passwordOld" type="password">
+              <span class="error-required hidden">Harap diisi</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-4 control-label">Password Baru</label>
+            <div class="col-sm-6">
+              <input class="form-control" ng-required="true" ng-model="var.input.passwordNew" type="password">
+              <span class="error-required hidden">Harap diisi</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-4 control-label">Konfirmasi Password Baru</label>
+            <div class="col-sm-6">
+              <input class="form-control" ng-required="true" ng-model="var.input.passwordNewConfirm" is-equal="var.input.passwordNew" type="password">
+              <span class="error-required hidden">Harap diisi</span>
+              <span class="error-equal hidden">Konfirmasi password tidak cocok</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-4 control-label"></label>
+            <div class="col-sm-6">
+              <div ng-if="var.message.errorMessage" class="alert alert-danger mt-10" ng-style="{'margin-top':'10px'}">{{var.message.errorMessage}}</div>
+              <div ng-if="var.message.successMessage" class="alert alert-success mt-10" ng-style="{'margin-top':'10px'}">{{var.message.successMessage}}</div>
+            </div>
+          </div>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+          <button type="button" class="btn btn-default" ng-click="onClick().isChangePassword(false)">Kembali</button>
+          <button type="submit" class="btn btn-success">Simpan</button>
+        </div>
+        <!-- /.box-footer -->
+      </form>
+    </div>
+  </div>
+</div>

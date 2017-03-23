@@ -14,11 +14,13 @@
   </div>
 
   <div ng-if="idRole!=2">
-    <div class="col-md-2">
-      <ng-include src="'scripts/templates/leftMenu.html'"></ng-include>
-    </div>
-    <div class="col-md-10">
-      <h1>Selamat Datang <i>"{{username}}"</i></h1>
+    <div class="col-md-12">
+      <div class="col-md-2">
+        <ng-include src="'scripts/templates/leftMenu.html'"></ng-include>
+      </div>
+      <div class="col-md-10" style="padding-top: 10px">
+        <h1>Selamat Datang <i>"{{username}}"</i></h1>
+      </div>
     </div>
   </div>
 </div>

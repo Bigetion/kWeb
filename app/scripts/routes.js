@@ -75,5 +75,14 @@
                     }
                 }
             })
+            .state('profil', {
+                url: "/profil",
+                views: {
+                    "content": {
+                        controller: 'ProfilCtrl',
+                        templateUrl: "scripts/templates/profil.html"
+                    }
+                }
+            })
     }]);
 })();

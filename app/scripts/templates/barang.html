@@ -29,18 +29,18 @@
         <table class="table table-striped">
           <tbody ng-style="{'width':'1800px', 'display':'block'}">
             <tr>
-              <th>#</th>
+              <th style="min-width: 40px">No</th>
               <th st-sort="jenis_produk">Jenis Produk</th>
               <th st-sort="merk">Merk</th>
-              <th st-sort="nama_penanggung_jawab" class="col-md-2">Nama Perusahaan</th>
-              <th st-sort="alamat_penanggung_jawab" class="col-md-2">Alamat</th>
+              <th st-sort="nama_penanggung_jawab" class="col-xs-2">Nama Perusahaan</th>
+              <th st-sort="alamat_penanggung_jawab" class="col-xs-2">Alamat</th>
               <th st-sort="no_SNI">No. SNI</th>
               <th st-sort="judul_SNI">Judul SNI</th>
               <th st-sort="no_sertifikat">No. Sertifikat</th>
               <th st-sort="no_lisensi">No. Lisensi</th>
               <th st-sort="tgl_terbit_sertifikat">Tanggal Penerbitan</th>
               <th st-sort="tgl_berakhir_sertifikat">Tanggal Berakhir</th>
-              <th ng-if="idRole!=2">Aksi</th>
+              <th style="min-width: 80px" ng-if="idRole!=2">Aksi</th>
             </tr>
             <tr ng-repeat="row in rowCollectionProduk">
               <td>{{$index+1}}</td>

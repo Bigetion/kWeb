@@ -5,6 +5,20 @@
             getData: function () {
                 return HttpService.execute(API_BASE_URL + 'page/pengguna/getList', {}, "Get List User");
             },
+            getProfile: function (idUser) {
+                var data = {
+                    idUser: idUser
+                };
+                return HttpService.execute(API_BASE_URL + 'page/pengguna/getProfile', data, "Get Profil");
+            },
+            changePassword: function (idUser, passwordOld, passwordNew) {
+                var data = {
+                    idUser: idUser,
+                    passwordOld: passwordOld,
+                    passwordNew: passwordNew
+                };
+                return HttpService.execute(API_BASE_URL + 'page/pengguna/changePassword', data, "Change Password");
+            },
             getRoleOptions: function () {
                 return HttpService.execute(API_BASE_URL + 'page/pengguna/getRoleOptions', {}, "Get Role Options");
             },

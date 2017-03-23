@@ -36,14 +36,14 @@ var App = angular
 
                     if ((stateName == 'barang' || stateName == 'qRCode' || stateName == 'pemetaan') && $rootScope.idRole != 2) {
                         $location.path('/');
-                    } else if ((stateName == 'sertifikat' || stateName == 'pengguna') && $rootScope.idRole == 2) {
+                    } else if ((stateName == 'sertifikat' || stateName == 'pengguna' || stateName == 'perusahaan') && $rootScope.idRole == 2) {
                         $location.path('/login');
                     }
                 });
             } else {
                 if ((stateName == 'barang' || stateName == 'qRCode' || stateName == 'pemetaan') && $rootScope.idRole != 2) {
                     $location.path('/');
-                } else if ((stateName == 'sertifikat' || stateName == 'pengguna') && $rootScope.idRole == 2) {
+                } else if ((stateName == 'sertifikat' || stateName == 'pengguna' || stateName == 'perusahaan') && $rootScope.idRole == 2) {
                     $location.path('/login');
                 }
             }

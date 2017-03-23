@@ -11,32 +11,26 @@
       var: {
         searchType: null,
         searchTypeList: [{
-          id: 'jenis_produk',
-          text: 'Jenis Produk'
-        }, {
-          id: 'merk',
-          text: 'Merk'
-        }, {
           id: 'nama_penanggung_jawab',
           text: 'Nama Perusahaan'
         }, {
           id: 'alamat_penanggung_jawab',
           text: 'Alamat'
         }, {
-          id: 'no_SNI',
-          text: 'No. SNI'
+          id: 'provinsi',
+          text: 'Provinsi'
         }, {
-          id: 'judul_SNI',
-          text: 'Judul SNI'
+          id: 'kode_pos',
+          text: 'Kode Pos'
         }, {
-          id: 'no_sertifikat',
-          text: 'No. Sertifikat'
+          id: 'status',
+          text: 'Status'
         }, {
-          id: 'no_lisensi',
-          text: 'No. Lisensi'
+          id: 'website',
+          text: 'Website'
         }, {
-          id: 'tgl_terbit_sertifikat',
-          text: 'Tanggal Penerbitan'
+          id: 'email',
+          text: 'Email'
         }],
         rowEditSelected: {},
         input: {
@@ -51,132 +45,134 @@
           website: '',
           email: ''
         },
-        collection: {
-          perusahaan: {
-            data: []
+      },
+      collection: {
+        perusahaan: {
+          data: []
+        }
+      },
+    },
+    init: function () {
+      this._onInit();
+    },
+    watch: {},
+    methods: {
+      _onInit: function () {
+        var _this = this;
+        _this.onLoad().getData();
+      },
+      onLoad: function () {
+        var _this = this;
+        return {
+          getData: function () {
+            _this.PerusahaanService.getData().then(function (response) {
+              _this.collection.perusahaan.data = response.data;
+            });
+          }
+        };
+      },
+      onClick: function () {
+        var _this = this;
+        return {
+          isAdd: function (condition) {
+            _this.state.isAdd = condition;
+            if (condition) {
+              _this.var.input = {
+                idPerusahaan: '',
+                namaPJProduk: '',
+                alamatPJProduk: '',
+                provinsi: '',
+                kabupaten: '',
+                kodePos: '',
+                statusPJProduk: '',
+                nomorTelpon: '',
+                website: '',
+                email: ''
+              }
+            }
+          },
+          isEdit: function (condition, row) {
+            _this.state.isEdit = condition;
+            if (condition) {
+              _this.var.rowEditSelected = row;
+              _this.var.input = {
+                idPerusahaan: row['id_perusahaan'],
+                namaPJProduk: row['nama_penanggung_jawab'],
+                alamatPJProduk: row['alamat_penanggung_jawab'],
+                provinsi: row['provinsi'],
+                kabupaten: row['kota'],
+                kodePos: row['kode_pos'],
+                statusPJProduk: row['status'],
+                nomorTelpon: row['telp'],
+                website: row['website'],
+                email: row['email'],
+              }
+            }
+          },
+          delete: function (row, index) {
+            var deleteRow = function () {
+              _this.PerusahaanService.submitDelete(row.id_perusahaan).then(function (response) {
+                if (response.success_message) {
+                  _this.collection.perusahaan.data.splice(index, 1);
+                }
+              });
+            }
+            _this.Notif.confirmation({
+              headerTitle: 'Konfirmasi Hapus',
+              message: 'Anda yakin ingin menghapus data ini ?',
+              okFunction: deleteRow
+            });
           }
         }
       },
-      init: function () {
-        this._onInit();
-      },
-      watch: {},
-      methods: {
-        _onInit: function () {
-          var _this = this;
-          _this.onLoad().getData();
-        },
-        onLoad: function () {
-          var _this = this;
-          return {
-            getData: function () {
-              _this.PerusahaanService.getData().then(function (response) {
-                _this.collection.perusahaan.data = response.data;
+      onSubmit: function () {
+        var _this = this;
+        return {
+          submit: function (myForm) {
+            if (_this.state.isAdd) _this.onSubmit().add(myForm);
+            else if (_this.state.isEdit) _this.onSubmit().edit(myForm);
+          },
+          add: function (myForm) {
+            if (myForm.$valid) {
+              _this.PerusahaanService.submitAdd(_this.var.input).then(function (response) {
+                if (response.success_message) {
+                  _this.collection.perusahaan.data.push({
+                    id_perusahaan: response.id,
+                    nama_penanggung_jawab: _this.var.input.namaPJProduk,
+                    alamat_penanggung_jawab: _this.var.input.alamatPJProduk,
+                    provinsi: _this.var.input.provinsi,
+                    kota: _this.var.input.kabupaten,
+                    kode_pos: _this.var.input.kodePos,
+                    status: _this.var.input.statusPJProduk,
+                    telp: _this.var.input.nomorTelpon,
+                    website: _this.var.input.website,
+                    email: _this.var.input.email
+                  });
+                  _this.state.isAdd = false;
+                }
               });
             }
-          };
-        },
-        onClick: function () {
-          var _this = this;
-          return {
-            isAdd: function (condition) {
-              _this.state.isAdd = condition;
-              if (condition) {
-                _this.var.input = {
-                  idPerusahaan: '',
-                  namaPJProduk: '',
-                  alamatPJProduk: '',
-                  provinsi: '',
-                  kabupaten: '',
-                  kodePos: '',
-                  statusPJProduk: '',
-                  nomorTelpon: '',
-                  website: '',
-                  email: ''
+          },
+          edit: function (myForm) {
+            if (myForm.$valid) {
+              _this.PerusahaanService.submitEdit(_this.var.rowEditSelected, _this.var.input).then(function (response) {
+                if (response.success_message) {
+                  _this.var.rowEditSelected['nama_penanggung_jawab'] = _this.var.input.namaPJProduk;
+                  _this.var.rowEditSelected['alamat_penanggung_jawab'] = _this.var.input.alamatPJProduk;
+                  _this.var.rowEditSelected['provinsi'] = _this.var.input.provinsi;
+                  _this.var.rowEditSelected['kota'] = _this.var.input.kabupaten;
+                  _this.var.rowEditSelected['kode_pos'] = _this.var.input.kodePos;
+                  _this.var.rowEditSelected['status'] = _this.var.input.statusPJProduk;
+                  _this.var.rowEditSelected['telp'] = _this.var.input.nomorTelpon;
+                  _this.var.rowEditSelected['website'] = _this.var.input.website;
+                  _this.var.rowEditSelected['email'] = _this.var.input.email;
+                  _this.state.isEdit = false;
                 }
-              }
-            },
-            isEdit: function (condition, row) {
-              _this.state.isEdit = condition;
-              if (condition) {
-                _this.var.rowEditSelected = row;
-                _this.var.input = {
-                  idPerusahaan: '',
-                  namaPJProduk: '',
-                  alamatPJProduk: '',
-                  provinsi: '',
-                  kabupaten: '',
-                  kodePos: '',
-                  statusPJProduk: '',
-                  nomorTelpon: '',
-                  website: '',
-                  email: ''
-                }
-              }
-            },
-            delete: function (row, index) {
-              var deleteRow = function () {
-                _this.PerusahaanService.submitDelete(row.id_user).then(function (response) {
-                  if (response.success_message) {
-                    _this.collection.userList.data.splice(index, 1);
-                  }
-                });
-              }
-              _this.Notif.confirmation({
-                headerTitle: 'Konfirmasi Hapus',
-                message: 'Anda yakin ingin menghapus data ini ?',
-                okFunction: deleteRow
               });
-            }
-          }
-        },
-        onSubmit: function () {
-          var _this = this;
-          return {
-            add: function (myForm) {
-              if (myForm.$valid) {
-                _this.PerusahaanService.submitAdd(_this.var.input).then(function (response) {
-                  if (response.success_message) {
-                    _this.collection.userList.data.push({
-                      id_perusahaan: response.id,
-                      nama_penanggung_jawab: _this.var.input.namaPJProduk,
-                      alamat_penanggung_jawab: _this.var.input.alamatPJProduk,
-                      provinsi: _this.var.input.provinsi,
-                      kota: _this.var.input.kabupaten,
-                      kode_pos: _this.var.input.kodePos,
-                      status: _this.var.input.statusPJProduk,
-                      telp: _this.var.input.nomorTelpon,
-                      website: _this.var.input.website,
-                      email: _this.var.input.email
-                    });
-                    _this.state.isAdd = false;
-                  }
-                });
-              }
-            },
-            edit: function (myForm) {
-              if (myForm.$valid) {
-                _this.PerusahaanService.submitEdit(_this.var.rowEdit, _this.var.input).then(function (response) {
-                  if (response.success_message) {
-                    _this.var.rowEditSelected = {
-                      id_perusahaan: _this.var.rowEditSelected.id_perusahaan,
-                      nama_penanggung_jawab: _this.var.input.namaPJProduk,
-                      alamat_penanggung_jawab: _this.var.input.alamatPJProduk,
-                      provinsi: _this.var.input.provinsi,
-                      kota: _this.var.input.kabupaten,
-                      kode_pos: _this.var.input.kodePos,
-                      status: _this.var.input.statusPJProduk,
-                      telp: _this.var.input.nomorTelpon,
-                      website: _this.var.input.website,
-                      email: _this.var.input.email
-                    }
-                    _this.state.isEdit = false;
-                  }
-                });
-              }
             }
           }
         }
       }
-    });
+    }
+  });
 })();

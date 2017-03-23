@@ -1,5 +1,5 @@
-<div class="col-md-10">
-  <div class="box box-info">
+<div class="col-md-10" style="padding-top: 10px">
+  <div class="box box-widget">
     <div class="box-header with-border">
       <h3 ng-if="state.isAddLisensi" class="box-title">Input Lisensi</h3>
       <h3 ng-if="state.isEditLisensi" class="box-title">Update Lisensi</h3>
@@ -74,7 +74,7 @@
       </div>
       <!-- /.box-body -->
       <div class="box-footer">
-        <button type="submit" class="btn btn-info pull-right">Simpan</button>
+        <button type="submit" class="btn btn-success">Simpan</button>
         <button ng-if="state.isAddLisensi" ng-click="onClick().isAddLisensi(false)" type="button" class="btn btn-default">Batal</button>
         <button ng-if="state.isEditLisensi" ng-click="onClick().isEditLisensi(false)" type="button" class="btn btn-default">Batal</button>
       </div>
