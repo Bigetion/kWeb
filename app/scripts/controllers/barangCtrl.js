@@ -120,6 +120,7 @@
         return {
           isBerlaku: function (condition) {
             _this.state.isBerlaku = condition;
+            _this.collection.produk.data = [];
             if (condition) {
               _this.BarangService.getSertifikatBerlaku().then(function (response) {
                 _this.collection.produk.data = response.data;
