@@ -39,6 +39,9 @@
               <th style="min-width: 100px">Email</th>
               <th style="min-width: 80px" ng-if="idRole==1 || idRole==4">Aksi</th>
             </tr>
+            <tr ng-hide="rowCollectionPerusahaan.length > 0">
+              <td colspan="10" align="left">Loading data...</td>
+            </tr>
             <tr ng-repeat="row in rowCollectionPerusahaan">
               <td>{{$index + 1}}</td>
               <td>{{row.nama_penanggung_jawab}}</td>
