@@ -45,9 +45,6 @@
             <tr ng-show="isGlobalLoading">
               <td colspan="12" align="left">Loading data...</td>
             </tr>
-            <tr ng-hide="true">
-              <td colspan="12" align="left">...</td>
-            </tr>
             <tr ng-hide="isGlobalLoading" ng-repeat="row in rowCollectionProduk">
               <td>{{$index+1}}</td>
               <td>{{row.jenis_produk}}</td>
