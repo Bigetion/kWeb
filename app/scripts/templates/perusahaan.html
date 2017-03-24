@@ -26,20 +26,26 @@
       </div>
       <div class="box-body table-responsive no-padding">
         <table class="table table-striped">
-          <tbody ng-style="{'width':'1800px', 'display':'block'}">
+          <tbody>
             <tr>
               <th style="min-width: 40px">#</th>
-              <th class="col-xs-2">Nama Perusahaan</th>
-              <th class="col-xs-2">Alamat Perusahaan</th>
-              <th>Provinsi</th>
-              <th>Kode Pos</th>
-              <th>Status</th>
-              <th>Nomor Telpon</th>
-              <th>Website</th>
-              <th>Email</th>
+              <th style="min-width: 250px" class="col-xs-2">Nama Perusahaan</th>
+              <th style="min-width: 250px" class="col-xs-2">Alamat Perusahaan</th>
+              <th style="min-width: 100px">Provinsi</th>
+              <th style="min-width: 100px">Kode Pos</th>
+              <th style="min-width: 100px">Status</th>
+              <th style="min-width: 150px">Nomor Telpon</th>
+              <th style="min-width: 100px">Website</th>
+              <th style="min-width: 100px">Email</th>
               <th style="min-width: 80px" ng-if="idRole==1 || idRole==4">Aksi</th>
             </tr>
-            <tr ng-repeat="row in rowCollectionPerusahaan">
+            <tr ng-show="isGlobalLoading">
+              <td colspan="10" align="left">Loading data...</td>
+            </tr>
+            <tr ng-hide="true">
+              <td colspan="10" align="left">...</td>
+            </tr>
+            <tr ng-hide="isGlobalLoading" ng-repeat="row in rowCollectionPerusahaan">
               <td>{{$index + 1}}</td>
               <td>{{row.nama_penanggung_jawab}}</td>
               <td>{{row.alamat_penanggung_jawab}}</td>
