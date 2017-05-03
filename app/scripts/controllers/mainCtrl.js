@@ -18,7 +18,7 @@
         methods: {
             _onInit: function() {
                 var _this = this;
-                _this.onLoad().getImageSlider();
+                // _this.onLoad().getImageSlider();
             },
             onLoad: function() {
                 var _this = this;

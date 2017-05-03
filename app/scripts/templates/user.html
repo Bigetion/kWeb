@@ -17,7 +17,10 @@
               <th style="min-width: 80px" ng-if="idRole==1">Aksi</th>
             </tr>
             <tr ng-hide="collection.userList.data.length > 0">
-              <td colspan="12" align="left">Loading data...</td>
+              <td colspan="6" align="left">Loading data...</td>
+            </tr>
+            <tr ng-hide="true">
+              <td colspan="6" align="left">...</td>
             </tr>
             <tr ng-repeat="row in collection.userList.data" ng-if="row.id_role!=2">
               <td>{{$index + 1}}</td>
@@ -36,8 +39,8 @@
       <!-- /.box-body -->
     </div>
   </div>
-  <div class="col-md-10" ng-show="state.isAdd || state.isEdit">
-    <div class="box box-primary" ng-if="state.isAdd">
+  <div class="col-md-10" style="padding-top: 10px" ng-show="state.isAdd || state.isEdit">
+    <div class="box box-widget" ng-if="state.isAdd">
       <div class="box-header with-border">
         <h3 class="box-title">Tambah Pengguna</h3>
       </div>
@@ -87,7 +90,7 @@
       </form>
     </div>
 
-    <div class="box box-primary" ng-if="state.isEdit">
+    <div class="box box-widget" ng-if="state.isEdit">
       <div class="box-header with-border">
         <h3 class="box-title">Update Pengguna</h3>
       </div>

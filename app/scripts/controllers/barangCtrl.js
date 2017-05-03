@@ -72,7 +72,8 @@
       },
       collection: {
         produk: {
-          data: []
+          data: [],
+          isLoaded:false
         }
       }
     },
@@ -92,10 +93,12 @@
             if (_this.$rootScope.idRole == 2) {
               _this.BarangService.getSertifikatBerlaku().then(function (response) {
                 _this.collection.produk.data = response.data;
+                _this.collection.produk.isLoaded = true;
               });
             } else {
               _this.BarangService.getData().then(function (response) {
                 _this.collection.produk.data = response.data;
+                _this.collection.produk.isLoaded = true;
               });
             }
           },
@@ -121,13 +124,16 @@
           isBerlaku: function (condition) {
             _this.state.isBerlaku = condition;
             _this.collection.produk.data = [];
+            _this.collection.produk.isLoaded = false;
             if (condition) {
               _this.BarangService.getSertifikatBerlaku().then(function (response) {
                 _this.collection.produk.data = response.data;
+                _this.collection.produk.isLoaded = true;
               });
             } else {
               _this.BarangService.getSertifikatTidakBerlaku().then(function (response) {
                 _this.collection.produk.data = response.data;
+                _this.collection.produk.isLoaded = true;
               });
             }
           },
@@ -142,10 +148,7 @@
                 tipeProduk: '',
                 pJProduk: '',
                 namaPabrik: '',
-                sni: {
-                  no_SNI: '',
-                  judul_SNI: ''
-                },
+                sni: '',
                 statusPenerapan: '',
                 skemaSertifikasi: '',
                 nomorSertifikat: '',

@@ -48,7 +48,8 @@
       },
       collection: {
         perusahaan: {
-          data: []
+          data: [],
+          isLoaded: false
         }
       },
     },
@@ -67,6 +68,7 @@
           getData: function () {
             _this.PerusahaanService.getData().then(function (response) {
               _this.collection.perusahaan.data = response.data;
+              _this.collection.perusahaan.isLoaded = true;
             });
           }
         };

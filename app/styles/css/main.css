@@ -41,21 +41,21 @@ body {
   overflow-y: auto;
 }
 #box-pemetaan {
-  width: 100%;
+  width: 80%;
   display: inline-block;
   position: relative;
   background-size: contain;
   background: url('images/pemetaan_bg.jpg') top center no-repeat;
-  margin: 0 auto;
+  margin: 0 10%;
   background-size: 100% auto;
 }
 #box-qrcode {
-  width: 100%;
+  width: 80%;
   display: inline-block;
   position: relative;
   background-size: contain;
   background: url('images/qrcode_bg.jpg') top center no-repeat;
-  margin: 0 auto;
+  margin: 0 10%;
   background-size: 100% auto;
 }
 .layout-boxed html,
@@ -69,8 +69,10 @@ body {
   font-weight: 400;
   overflow-x: hidden;
   overflow-y: auto;
-  /*background: url('images/bg/bg.jpg') repeat fixed;*/
-  background-color: #FAF8F9;
+  background-color: #FFFFFF;
+}
+.body-bg {
+  background: url('images/bg/bg.jpg') repeat fixed;
 }
 /* Layout */
 .wrapper {
@@ -2974,6 +2976,7 @@ table.text-center th {
 .carousel-control.left,
 .carousel-control.right {
   background-image: none;
+  color: #0073b7;
 }
 .carousel-control > .fa {
   font-size: 40px;
@@ -3035,6 +3038,7 @@ table.text-center th {
 .box-widget {
   border: none;
   position: relative;
+  border-top: 1px solid #F7F7F7;
 }
 .widget-user .widget-user-header {
   padding: 20px;
@@ -4804,12 +4808,12 @@ table.text-center th {
 .ng-invalid.ng-touched>.ui-select-container .ui-select-match,
 input.ng-invalid.ng-touched,
 textarea.ng-invalid.ng-touched,
-tags-input.ng-invalid.ng-touched,
+tags-input.ng-invalid.ng-touched .tags,
 ui-select-infinite.ng-invalid.ng-touched,
 select.error-required-select,
 input.invalid-input {
     box-shadow: none;
-    border: 1px solid #D9534F;
+    border: 1px solid #D9534F !important;
 }
 
 input.ng-invalid-maxlength.ng-touched~.error-maxlength,

@@ -2,7 +2,7 @@
     'use strict';
     App.classy.controller({
         name: 'AppCtrl',
-        inject: ['$rootScope', '$scope', '$interval', 'AuthService', '$location', '$cookies', 'MainService'],
+        inject: ['$rootScope', '$scope', 'AuthService', '$location', '$cookies', 'MainService'],
         data: {
             state: {
 
