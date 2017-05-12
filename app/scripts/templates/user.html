@@ -70,6 +70,11 @@
             <ui-select-object ng-model="var.input.role" data="var.options.roleOptions" ng-required="true" selected-text="role_name"></ui-select-object>
             <span class="error-required hidden">Harap diisi</span>
           </div>
+          <div class="form-group" ng-if="var.input.role.id_role==4">
+            <label>LSPRO</label>
+            <ui-select-object ng-model="var.input.lspro" data="var.options.LSPROOptions" ng-required="true" selected-text="nama_lspro"></ui-select-object>
+            <span class="error-required hidden">Harap diisi</span>
+          </div>
           <div class="form-group">
             <label>Password</label>
             <input type="password" ng-model="var.input.password" ng-required="true" class="form-control" />
@@ -118,6 +123,11 @@
           <div class="form-group" ng-hide="idUser==var.rowEdit.id_user">
             <label>Role</label>
             <ui-select-object ng-model="var.input.role" data="var.options.roleOptions" ng-required="true" selected-text="role_name"></ui-select-object>
+            <span class="error-required hidden">Harap diisi</span>
+          </div>
+          <div class="form-group" ng-if="var.input.role.id_role==4">
+            <label>LSPRO</label>
+            <ui-select-object ng-model="var.input.lspro" data="var.options.LSPROOptions" ng-required="true" selected-text="nama_lspro"></ui-select-object>
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>

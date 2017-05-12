@@ -22,6 +22,9 @@
             getRoleOptions: function () {
                 return HttpService.execute(API_BASE_URL + 'page/pengguna/getRoleOptions', {}, "Get Role Options");
             },
+            getLSPROOptions: function () {
+                return HttpService.execute(API_BASE_URL + 'page/pengguna/getLSPROOptions', {}, "Get LSPRO Options");
+            },
             submitAdd: function (input) {
                 var data = {
                     nama: input.nama,
@@ -30,7 +33,7 @@
                     idRole: input.role.id_role,
                     password: input.password
                 };
-                return HttpService.execute(API_BASE_URL + 'page/pengguna/submitAdd', data, "Submit Add");
+                return HttpService.execute(API_BASE_URL + 'page/pengguna/submitAdd', data, "Submit Add User");
             },
             submitEdit: function (row, input) {
                 var data = {
@@ -41,13 +44,21 @@
                     email: input.email,
                     idRole: input.role.id_role,
                 };
-                return HttpService.execute(API_BASE_URL + 'page/pengguna/submitEdit', data, "Submit Edit");
+                return HttpService.execute(API_BASE_URL + 'page/pengguna/submitEdit', data, "Submit Edit User");
             },
-            submitDelete: function (idUser) {
+            submitDelete: function (idUser, idExternal) {
                 var data = {
-                    idUser: idUser
+                    idUser: idUser,
+                    idExternal: idExternal
                 };
-                return HttpService.execute(API_BASE_URL + 'page/pengguna/submitDelete', data, "Submit Delete");
+                return HttpService.execute(API_BASE_URL + 'page/pengguna/submitDelete', data, "Submit Delete User");
+            },
+            submitUpdateLSPRO: function (idUser, idLSPRO) {
+                var data = {
+                    idUser: idUser,
+                    idLSPRO: idLSPRO
+                };
+                return HttpService.execute(API_BASE_URL + 'page/pengguna/submitUpdateLSPRO', data, "Submit Update LSPRO");
             }
         }
     }])

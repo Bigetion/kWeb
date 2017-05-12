@@ -2,7 +2,7 @@
   'use strict';
   App.classy.controller({
     name: 'BarangCtrl',
-    inject: ['$rootScope', '$scope', 'BarangService', 'Notif', 'lodash'],
+    inject: ['$rootScope', '$scope', 'BarangService', 'PerusahaanService', 'Notif', 'lodash'],
     data: {
       state: {
         isBerlaku: true,
@@ -73,7 +73,7 @@
       collection: {
         produk: {
           data: [],
-          isLoaded:false
+          isLoaded: false
         }
       }
     },
@@ -90,21 +90,34 @@
         var _this = this;
         return {
           getData: function () {
-            if (_this.$rootScope.idRole == 2) {
-              _this.BarangService.getSertifikatBerlaku().then(function (response) {
-                _this.collection.produk.data = response.data;
-                _this.collection.produk.isLoaded = true;
+            if (_this.$rootScope.idRole == 4) {
+              _this.PerusahaanService.getLSPRO(_this.$rootScope.idUser).then(function (response) {
+                if (response.data.length > 0) _this.var.idLSPRO = response.data[0].id_lspro;
+                else _this.var.idLSPRO = '';
+
+                _this.BarangService.getDataByLSPRO(_this.var.idLSPRO).then(function (response) {
+                  _this.collection.produk.data = response.data;
+                  _this.collection.produk.isLoaded = true;
+                });
               });
             } else {
-              _this.BarangService.getData().then(function (response) {
-                _this.collection.produk.data = response.data;
-                _this.collection.produk.isLoaded = true;
-              });
+              _this.var.idLSPRO = '';
+              if (_this.$rootScope.idRole == 2) {
+                _this.BarangService.getSertifikatBerlaku().then(function (response) {
+                  _this.collection.produk.data = response.data;
+                  _this.collection.produk.isLoaded = true;
+                });
+              } else {
+                _this.BarangService.getData().then(function (response) {
+                  _this.collection.produk.data = response.data;
+                  _this.collection.produk.isLoaded = true;
+                });
+              }
             }
           },
           getPerusahaanOptions: function () {
             if (_this.$rootScope.idRole != 2) {
-              _this.BarangService.getPerusahaanOptions().then(function (response) {
+              _this.BarangService.getPerusahaanOptions(_this.var.idLSPRO).then(function (response) {
                 _this.var.options.perusahaanOptions = response.data;
               });
             }
@@ -190,7 +203,7 @@
                 }
               }
 
-              _this.BarangService.getPerusahaanOptions().then(function (response) {
+              _this.BarangService.getPerusahaanOptions(_this.var.idLSPRO).then(function (response) {
                 _this.var.options.perusahaanOptions = response.data;
                 var pJProdukIndex = _this.lodash.findIndex(_this.var.options.perusahaanOptions, { id_perusahaan: _this.var.rowSelected.id_perusahaan });
                 _this.var.input.pJProduk = _this.var.options.perusahaanOptions[pJProdukIndex];

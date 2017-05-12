@@ -9,6 +9,7 @@
         isEdit: false
       },
       var: {
+        idLSPRO: '',
         searchType: null,
         searchTypeList: [{
           id: 'nama_penanggung_jawab',
@@ -60,13 +61,30 @@
     methods: {
       _onInit: function () {
         var _this = this;
-        _this.onLoad().getData();
+
+        if (_this.$rootScope.idRole == 4) {
+          _this.PerusahaanService.getLSPRO(_this.$rootScope.idUser).then(function (response) {
+            if (response.data.length > 0) _this.var.idLSPRO = response.data[0].id_lspro;
+            else _this.var.idLSPRO = '';
+
+            _this.onLoad().getDataByLSPRO();
+          });
+        } else {
+          _this.var.idLSPRO = '';
+          _this.onLoad().getData();
+        }
       },
       onLoad: function () {
         var _this = this;
         return {
           getData: function () {
             _this.PerusahaanService.getData().then(function (response) {
+              _this.collection.perusahaan.data = response.data;
+              _this.collection.perusahaan.isLoaded = true;
+            });
+          },
+          getDataByLSPRO: function () {
+            _this.PerusahaanService.getDataByLSPRO(_this.var.idLSPRO).then(function (response) {
               _this.collection.perusahaan.data = response.data;
               _this.collection.perusahaan.isLoaded = true;
             });
@@ -89,7 +107,8 @@
                 statusPJProduk: '',
                 nomorTelpon: '',
                 website: '',
-                email: ''
+                email: '',
+                idLSPRO: _this.var.idLSPRO
               }
             }
           },

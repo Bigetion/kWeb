@@ -2,8 +2,14 @@
     'use strict';
     App.service('PerusahaanService', ['$http', 'HttpService', 'API_BASE_URL', '$filter', function ($http, HttpService, API_BASE_URL, $filter) {
         return {
+            getLSPRO: function (idUser) {
+                return HttpService.execute(API_BASE_URL + 'page/perusahaan/getLSPRO', { idUser: idUser }, "Get LSPRO");
+            },
             getData: function () {
                 return HttpService.execute(API_BASE_URL + 'page/perusahaan/getData', {}, "Get List Perusahaan");
+            },
+            getDataByLSPRO: function (idLSPRO) {
+                return HttpService.execute(API_BASE_URL + 'page/perusahaan/getDataByLSPRO', { idLSPRO: idLSPRO }, "Get List Perusahaan");
             },
             submitAdd: function (input) {
                 var data = {
@@ -15,7 +21,8 @@
                     statusPJProduk: input.statusPJProduk,
                     nomorTelpon: input.nomorTelpon,
                     website: input.website,
-                    email: input.email
+                    email: input.email,
+                    idLSPRO: input.idLSPRO
                 };
                 return HttpService.execute(API_BASE_URL + 'page/perusahaan/submitAdd', data, "Submit Add");
             },

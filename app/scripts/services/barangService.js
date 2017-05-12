@@ -11,8 +11,11 @@
             getData: function () {
                 return HttpService.get(API_BASE_URL + 'page/sertifikat/getData', {}, "Get Data");
             },
-            getPerusahaanOptions: function () {
-                return HttpService.get(API_BASE_URL + 'page/sertifikat/getPerusahaanOptions', {}, "Get Penanggung Jawab");
+            getDataByLSPRO: function (idLSPRO) {
+                return HttpService.get(API_BASE_URL + 'page/sertifikat/getDataByLSPRO', { idLSPRO: idLSPRO }, "Get Data");
+            },
+            getPerusahaanOptions: function (idLSPRO) {
+                return HttpService.get(API_BASE_URL + 'page/sertifikat/getPerusahaanOptions', { idLSPRO: idLSPRO }, "Get Penanggung Jawab");
             },
             getSNIOptions: function () {
                 return HttpService.get(API_BASE_URL + 'page/sertifikat/getSNIOptions', {}, "Get SNI Options");
