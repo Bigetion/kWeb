@@ -55,6 +55,7 @@
           <div class="col-sm-6">
             <!--<ui-select-object ng-required="false" ng-model="var.input.sni" data="var.options.sniOptions" selected-text="no_SNI"></ui-select-object>-->
             <ui-select-infinite2 ng-model="var.input.sni" factory="BarangService.getSNIOptions" id-selected="text" multiple="false"></ui-select-infinite2>
+            <!--<ui-select-infinite ng-model="var.input.sni" response-array="data" service="BarangService.getSNIOptions" infinity-value="id" item-value="id" select-value="id"></ui-select-infinite>-->
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
@@ -69,7 +70,7 @@
             <h6><i>Ket : "voluntary" untuk sukarela, dan "mandatory" untuk yang diberlakukan wajib melalui regulasi</i></h6>
           </label>
           <div class="col-sm-6">
-            <ui-select-object ng-required="false" ng-model="var.input.statusPenerapan" data="[{id:'mandatory',text:'Mandatory'},{id:'voluntary',text:'Voluntary'}]"
+            <ui-select-object ng-required="false" search="false" ng-model="var.input.statusPenerapan" data="[{id:'mandatory',text:'Mandatory'},{id:'voluntary',text:'Voluntary'}]"
               selected-text="text"></ui-select-object>
             <span class="error-required hidden">Harap diisi</span>
           </div>

@@ -75,7 +75,7 @@
         '<span ng-if="itemValue3" ng-bind-html="item[itemValue3] | highlight: $select.search"></span>' +
         '</ui-select-choices>' +
         '</ui-select>' +
-        '<span class="error-required hidden {{isInline?\'inline-error\':\'\'}}">{{requiredMsg ? $root.lang[requiredMsg] : $root.lang.general_required}}</span></div>',
+        '<span class="error-required hidden {{isInline?\'inline-error\':\'\'}}">{{requiredMsg ? requiredMsg : "Harus diisi"}}</span></div>',
         link: function (scope) {
           scope.$watch('ngModel', function () {
             if (scope.onChange) {
@@ -92,7 +92,7 @@
         controller: ['$scope', function ($scope) {
           $scope.isLastPage = false;
 
-          $scope.holder = $scope.$root.lang.loading;
+          $scope.holder = 'Loading..';
           if (!$scope.noLoading) {
             $scope.loading = true;
           }
@@ -126,7 +126,7 @@
               if (!$scope.noLoading) {
                 $scope.loading = false;
               }
-              $scope.holder = $scope.$root.lang[$scope.placeholder];
+              $scope.holder = $scope.placeholder;
             });
             return $scope.data;
           };
@@ -167,7 +167,7 @@
         restrict: 'EA',
         require: 'ngModel',
         transclude: true,
-        template: '<div ui-select2="select2Options" theme="bootstrap" ng-model="ngModel" ng-required="required" ng-disabled="disabled"></div>',
+        template: '<div style="position:relative;" ui-select2="select2Options" ng-model="ngModel" ng-required="required" ng-disabled="disabled"></div>',
         scope: {
           factory: '@',
           idSelected: '@',
@@ -229,7 +229,9 @@
                 multiple: multiple,
                 formatResult: formatResult,
                 formatSelection: formatSelection,
-                query: queryHandler
+                query: queryHandler,
+                dropdownParent: iElement,
+                theme: "bootstrap"
               };
             }
           };
