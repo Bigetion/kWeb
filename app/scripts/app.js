@@ -13,6 +13,7 @@ var App = angular
         'ui.bootstrap',
         'ui.router',
         'ui.select',
+        'ui.select2',
         'ui-notification',
         'ngLodash',
         'ngTagsInput',

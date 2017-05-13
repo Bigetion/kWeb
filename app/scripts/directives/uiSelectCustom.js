@@ -167,7 +167,7 @@
         restrict: 'EA',
         require: 'ngModel',
         transclude: true,
-        template: '<div ui-select2=\'select2Options\' ng-model=\'ngModel\' ng-required=\'required\' ng-disabled=\'disabled\'></div>',
+        template: '<div ui-select2="select2Options" theme="bootstrap" ng-model="ngModel" ng-required="required" ng-disabled="disabled"></div>',
         scope: {
           factory: '@',
           idSelected: '@',

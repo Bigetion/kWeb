@@ -11,7 +11,7 @@
             <h6><i>Ket : diisi nama pemilik merek atau nama perwakilan pemilik merek produk yang diedarkan di wilayah RI sesuai dengan pendaftaran di Kementerian Hukum dan HAM RI</i></h6>
           </label>
           <div class="col-sm-6">
-            <input class="form-control" ng-required="true" ng-model="var.input.namaPJProduk">
+            <input class="form-control" ng-required="false" ng-model="var.input.namaPJProduk">
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
@@ -20,28 +20,28 @@
             <h6><i>Ket : diisi nama jalan, nomor, RT/RW, Kelurahan, Kecamatan</i></h6>
           </label>
           <div class="col-sm-6">
-            <textarea class="form-control" ng-required="true" ng-model="var.input.alamatPJProduk"></textarea>
+            <textarea class="form-control" ng-required="false" ng-model="var.input.alamatPJProduk"></textarea>
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-4 control-label">Provinsi</label>
           <div class="col-sm-6">
-            <input class="form-control" ng-required="true" ng-model="var.input.provinsi">
+            <input class="form-control" ng-required="false" ng-model="var.input.provinsi">
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-4 control-label">Kota Madya / Kabupaten</label>
           <div class="col-sm-6">
-            <input class="form-control" ng-required="true" ng-model="var.input.kabupaten">
+            <input class="form-control" ng-required="false" ng-model="var.input.kabupaten">
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-4 control-label">Kode Pos</label>
           <div class="col-sm-6">
-            <input class="form-control" ng-required="true" ng-model="var.input.kodePos">
+            <input class="form-control" ng-required="false" ng-model="var.input.kodePos">
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
@@ -50,14 +50,14 @@
             <h6><i>Ket : diisi importir pemilik merk atau distributor atau perwakilan resmi produsen atau pabrikan lokal yang memproduksi untuk merek lokal/asing </i></h6>
           </label>
           <div class="col-sm-6">
-            <input class="form-control" ng-required="true" ng-model="var.input.statusPJProduk">
+            <input class="form-control" ng-required="false" ng-model="var.input.statusPJProduk">
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-4 control-label">Nomor Telpon / HP</label>
           <div class="col-sm-6">
-            <input validate-input is-numeric="true" class="form-control" ng-required="true" ng-model="var.input.nomorTelpon">
+            <input validate-input is-numeric="true" class="form-control" ng-required="false" ng-model="var.input.nomorTelpon">
             <span class="error-required hidden">Harap diisi</span>
             <span class="error-numeric hidden">Nomor telpon tidak valid</span>
           </div>
@@ -65,14 +65,14 @@
         <div class="form-group">
           <label class="col-sm-4 control-label">Website</label>
           <div class="col-sm-6">
-            <input validate-input is-valid-url="true" type="text" class="form-control" ng-required="true" ng-model="var.input.website">
+            <input validate-input is-valid-url="true" type="text" class="form-control" ng-required="false" ng-model="var.input.website">
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-4 control-label">Email</label>
           <div class="col-sm-6">
-            <input validate-input is-email="true" class="form-control" ng-required="true" ng-model="var.input.email">
+            <input validate-input is-email="true" class="form-control" ng-required="false" ng-model="var.input.email">
             <span class="error-required hidden">Harap diisi</span>
             <span class="error-email hidden">Email tidak valid</span>
           </div>

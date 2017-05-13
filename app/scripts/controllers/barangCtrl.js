@@ -65,7 +65,7 @@
           skemaSertifikasi: '',
           nomorSertifikat: '',
           masaBerlakuSertifikat: {
-            from: new Date(),
+            from: new Date(2015,12,12),
             to: new Date()
           }
         }
@@ -166,7 +166,7 @@
                 skemaSertifikasi: '',
                 nomorSertifikat: '',
                 masaBerlakuSertifikat: {
-                  from: new Date(),
+                  from: new Date(2015,12,12),
                   to: new Date()
                 }
               };
