@@ -293,7 +293,7 @@
                       'tgl_terbit_sertifikat': _this.var.input.masaBerlakuSertifikat.from,
                       'tgl_berakhir_sertifikat': _this.var.input.masaBerlakuSertifikat.to,
                     });
-                    _this.onClick().isAddSertifikat(false);
+                    _this.state.isAddSertifikat = false;
                   }
                 });
               } else if (_this.state.isEditSertifikat) {
@@ -313,7 +313,7 @@
                     _this.var.rowSelected.no_sertifikat = _this.var.input.nomorSertifikat;
                     _this.var.rowSelected.tgl_terbit_sertifikat = _this.var.input.masaBerlakuSertifikat.from;
                     _this.var.rowSelected.tgl_berakhir_sertifikat = _this.var.input.masaBerlakuSertifikat.to;
-                    _this.onClick().isEditSertifikat(false);
+                    _this.state.isEditSertifikat = false;
                   }
                 });
               }
