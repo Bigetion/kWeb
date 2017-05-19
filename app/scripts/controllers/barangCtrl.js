@@ -65,7 +65,7 @@
           skemaSertifikasi: '',
           nomorSertifikat: '',
           masaBerlakuSertifikat: {
-            from: new Date(2015,12,12),
+            from: new Date(),
             to: new Date()
           }
         }
@@ -166,7 +166,7 @@
                 skemaSertifikasi: '',
                 nomorSertifikat: '',
                 masaBerlakuSertifikat: {
-                  from: new Date(2015,12,12),
+                  from: new Date(),
                   to: new Date()
                 }
               };
@@ -213,6 +213,8 @@
                 _this.var.options.sniOptions = response.data;
                 var sniIndex = _this.lodash.findIndex(_this.var.options.sniOptions, { no_SNI: _this.var.rowSelected.no_SNI });
                 _this.var.input.sni = _this.var.options.sniOptions[sniIndex];
+                _this.var.input.sni.id = _this.var.input.sni.no_SNI;
+                _this.var.input.sni.text = _this.var.input.sni.judul_SNI;
               });
             }
           },

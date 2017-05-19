@@ -307,3 +307,8 @@
 .input-control.info .select2-selection {
   border: 1px solid #1ba1e2;
 }
+
+
+.ui-select-dropdown.select2-drop {
+  position: absolute !important;
+}

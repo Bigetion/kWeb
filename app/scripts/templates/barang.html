@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-4 pull-left">
           <div class="row">
-            <div class="input-group">
+            <div class="input-group" style="margin-top:3px;">
               <input name="table_search" ng-model="var.stSearch" st-search="{{var.searchType.id || ''}}" class="form-control pull-right"
                 placeholder="Cari" type="text">
               <div class="input-group-btn">
@@ -32,16 +32,19 @@
             <tr>
               <th style="min-width: 40px">No</th>
               <th style="min-width: 150px" st-sort="jenis_produk">Jenis Produk</th>
-              <th style="min-width: 150px" st-sort="merk">Merk</th>
-              <th style="min-width: 250px" st-sort="nama_penanggung_jawab" class="col-xs-2">Nama Perusahaan</th>
-              <th style="min-width: 250px" st-sort="alamat_penanggung_jawab" class="col-xs-2">Alamat</th>
-              <th style="min-width: 100px" st-sort="no_SNI">No. SNI</th>
-              <th style="min-width: 100px" st-sort="judul_SNI">Judul SNI</th>
-              <th style="min-width: 100px" st-sort="no_sertifikat">No. Sertifikat</th>
-              <th style="min-width: 100px" st-sort="no_lisensi">No. Lisensi</th>
+              <th style="min-width: 100px" st-sort="merk">Merk</th>
+              <th ng-if="idRole!=2" style="min-width: 250px" st-sort="nama_penanggung_jawab" class="col-xs-2">Nama Perusahaan</th>
+              <th ng-if="idRole!=2" style="min-width: 250px" st-sort="alamat_penanggung_jawab" class="col-xs-2">Alamat</th>
+              <th ng-if="idRole==5" style="min-width: 100px" st-sort="telp" class="col-xs-2">No. Telpon</th>
+              <th ng-if="idRole==5" style="min-width: 100px" st-sort="website" class="col-xs-2">Website</th>
+              <th ng-if="idRole==5" style="min-width: 100px" st-sort="email" class="col-xs-2">Email</th>
+              <th style="min-width: 150px" st-sort="no_SNI">No. SNI</th>
+              <th style="min-width: 250px" st-sort="judul_SNI">Judul SNI</th>
+              <th ng-if="idRole!=2" style="min-width: 100px" st-sort="no_sertifikat">No. Sertifikat</th>
+              <th ng-if="idRole!=2" style="min-width: 100px" st-sort="no_lisensi">No. Lisensi</th>
               <th style="min-width: 150px" st-sort="tgl_terbit_sertifikat">Tanggal Penerbitan</th>
               <th style="min-width: 150px" st-sort="tgl_berakhir_sertifikat">Tanggal Berakhir</th>
-              <th style="min-width: 80px" style="min-width: 80px" ng-if="idRole!=2">Aksi</th>
+              <th style="min-width: 80px" style="min-width: 80px" ng-if="idRole!=2 && idRole!=5">Aksi</th>
             </tr>
             <tr ng-hide="rowCollectionProduk.length > 0">
               <td colspan="12" align="left">{{collection.produk.isLoaded ? 'Tidak ada data':'Loading data...'}}</td>
@@ -50,15 +53,18 @@
               <td colspan="12" align="left">...</td>
             </tr>
             <tr ng-repeat="row in rowCollectionProduk">
-              <td>{{$index+1}}</td>
-              <td>{{row.jenis_produk}}</td>
-              <td>{{row.merk}}</td>
-              <td>{{row.nama_penanggung_jawab}}</td>
-              <td>{{row.alamat_penanggung_jawab}}</td>
-              <td>{{row.no_SNI}}</td>
-              <td>{{row.judul_SNI}}</td>
-              <td>{{row.no_sertifikat}}</td>
-              <td>{{row.no_lisensi || '-'}}</td>
+              <td>{{$index+1 || '-'}}</td>
+              <td>{{row.jenis_produk || '-'}}</td>
+              <td>{{row.merk || '-'}}</td>
+              <td ng-if="idRole!=2" >{{row.nama_penanggung_jawab || '-'}}</td>
+              <td ng-if="idRole!=2" >{{row.alamat_penanggung_jawab || '-'}}</td>
+              <td ng-if="idRole==5" >{{row.telp || '-'}}</td>
+              <td ng-if="idRole==5" >{{row.website || '-'}}</td>
+              <td ng-if="idRole==5" >{{row.email || '-'}}</td>
+              <td>{{row.no_SNI || '-'}}</td>
+              <td>{{row.judul_SNI || '-'}}</td>
+              <td ng-if="idRole!=2" >{{row.no_sertifikat || '-'}}</td>
+              <td ng-if="idRole!=2" >{{row.no_lisensi || '-'}}</td>
               <td>{{row.tgl_terbit_sertifikat | amDateFormat:'DD MMMM YYYY'}}</td>
               <td>{{row.tgl_berakhir_sertifikat | amDateFormat:'DD MMMM YYYY'}}</td>
               <td ng-if="idRole==1 || idRole==4">
