@@ -32,21 +32,21 @@
         scope.dateOptions = {
           dateDisabled: scope.disabled,
           formatYear: 'yy',
-          // maxDate: scope.maxDate || new Date(2020, 5, 22),
-          // minDate: scope.minDate || new Date(),
+          maxDate: scope.maxDate || new Date(9999, 12, 31),
+          minDate: scope.minDate || new Date(),
           startingDay: 1,
           showButtonBar: false
         }
 
-        // scope.$watch('maxDate', function () {
-        //   scope.dateOptions.maxDate = scope.maxDate || new Date(2020, 5, 22);
-        //   scope.dateOptions.minDate = scope.minDate || new Date();
-        // });
+        scope.$watch('maxDate', function () {
+          scope.dateOptions.maxDate = scope.maxDate || new Date(9999, 12, 31);
+          scope.dateOptions.minDate = scope.minDate || new Date();
+        });
 
-        // scope.$watch('minDate', function () {
-        //   scope.dateOptions.maxDate = scope.maxDate || new Date(2020, 5, 22);
-        //   scope.dateOptions.minDate = scope.minDate || new Date();
-        // });
+        scope.$watch('minDate', function () {
+          scope.dateOptions.maxDate = scope.maxDate || new Date(9999, 12, 31);
+          scope.dateOptions.minDate = scope.minDate || new Date();
+        });
         // element.replaceWith($compile('<p class="input-group">\
         //   <input type="text" class="form-control" uib-datepicker-popup ng-model="$parent.ngModel" is-open="$parent.popup.opened" datepicker-options="$parent.dateOptions" ng-required="$parent.ngRequired" close-text="Close"/>\
         //   <span class="input-group-btn">\

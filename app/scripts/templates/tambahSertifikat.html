@@ -11,50 +11,56 @@
         <div class="form-group">
           <label class="col-sm-4 control-label">Jenis Produk</label>
           <div class="col-sm-6">
-            <input class="form-control" ng-required="false" ng-model="var.input.jenisProduk" autofocus>
+            <input class="form-control" ng-required="true" ng-model="var.input.jenisProduk" autofocus>
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-4 control-label">Nama Produk</label>
           <div class="col-sm-6">
-            <input class="form-control" ng-required="false" ng-model="var.input.namaProduk">
+            <input class="form-control" ng-required="true" ng-model="var.input.namaProduk">
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-4 control-label">Merk</label>
           <div class="col-sm-6">
-            <input class="form-control" ng-required="false" ng-model="var.input.merk">
+            <input class="form-control" ng-required="true" ng-model="var.input.merk">
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-4 control-label">Tipe Produk</label>
           <div class="col-sm-6">
-            <input class="form-control" ng-required="false" ng-model="var.input.tipeProduk">
+            <input class="form-control" ng-required="true" ng-model="var.input.tipeProduk">
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-4 control-label">Penanggung Jawab Produk</label>
           <div class="col-sm-6">
-            <ui-select-object ng-required="false" ng-model="var.input.pJProduk" data="var.options.perusahaanOptions" selected-text="nama_penanggung_jawab"></ui-select-object>
+            <ui-select-object ng-required="true" ng-model="var.input.pJProduk" data="var.options.perusahaanOptions" selected-text="nama_penanggung_jawab"></ui-select-object>
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-4 control-label">Nama Pabrik</label>
           <div class="col-sm-6">
-            <tags-input replace-spaces-with-dashes=false ng-required="false" ng-model="var.input.namaPabrik" placeholder="Input nama pabrik"></tags-input>
+            <tags-input replace-spaces-with-dashes=false ng-required="true" ng-model="var.input.namaPabrik" placeholder="Input nama pabrik"></tags-input>
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-4 control-label">Nomor SNI</label>
           <div class="col-sm-6">
-            <!--<ui-select-object ng-required="false" ng-model="var.input.sni" data="var.options.sniOptions" selected-text="no_SNI"></ui-select-object>-->
-            <ui-select-infinite2 ng-model="var.input.sni" factory="BarangService.getSNIOptions" id-selected="text" multiple="false"></ui-select-infinite2>
+            <!--<ui-select-object ng-required="true" ng-model="var.input.sni" data="var.options.sniOptions" selected-text="no_SNI"></ui-select-object>-->
+            <ui-select-infinite2 required="true" ng-model="var.input.sni" factory="BarangService.getSNIOptions" id-selected="text" multiple="true"></ui-select-infinite2>
+            <table class="table border">
+              <tr ng-repeat="sni in var.input.sni">
+                <td class="col-sm-4"><i class="fa fa-circle-o"></i> {{sni.text}} :</td>
+                <td class="col-sm-8">{{sni.judul_SNI}}</td>
+              </tr>
+            </table>
             <!--<ui-select-infinite ng-model="var.input.sni" response-array="data" service="BarangService.getSNIOptions" infinity-value="id" item-value="id" select-value="id"></ui-select-infinite>-->
             <span class="error-required hidden">Harap diisi</span>
           </div>
@@ -70,7 +76,7 @@
             <h6><i>Ket : "voluntary" untuk sukarela, dan "mandatory" untuk yang diberlakukan wajib melalui regulasi</i></h6>
           </label>
           <div class="col-sm-6">
-            <ui-select-object ng-required="false" search="false" ng-model="var.input.statusPenerapan" data="[{id:'mandatory',text:'Mandatory'},{id:'voluntary',text:'Voluntary'}]"
+            <ui-select-object ng-required="true" search="false" ng-model="var.input.statusPenerapan" data="[{id:'mandatory',text:'Mandatory'},{id:'voluntary',text:'Voluntary'}]"
               selected-text="text"></ui-select-object>
             <span class="error-required hidden">Harap diisi</span>
           </div>
@@ -78,14 +84,14 @@
         <div class="form-group">
           <label class="col-sm-4 control-label">Skema Sertifikasi</label>
           <div class="col-sm-6">
-            <input class="form-control" ng-required="false" ng-model="var.input.skemaSertifikasi">
+            <input class="form-control" ng-required="true" ng-model="var.input.skemaSertifikasi">
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>
         <div class="form-group">
           <label class="col-sm-4 control-label">Nomor Sertifikat</label>
           <div class="col-sm-6">
-            <input class="form-control" ng-required="false" ng-model="var.input.nomorSertifikat">
+            <input class="form-control" ng-required="true" ng-model="var.input.nomorSertifikat">
             <span class="error-required hidden">Harap diisi</span>
           </div>
         </div>

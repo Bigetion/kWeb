@@ -13,17 +13,39 @@
   }])
     .service('BarangService', ['$http', 'HttpService', 'API_BASE_URL', '$filter', function ($http, HttpService, API_BASE_URL, $filter) {
       return {
-        getSertifikatBerlaku: function () {
-          return HttpService.get(API_BASE_URL + 'page/sertifikat/getSertifikatBerlaku', {}, "Get Data");
+        getSertifikatBerlaku: function (page, q, searchBy) {
+          var data = {};
+          if(page) data['page'] = page.toString();
+          if(q) data['q'] = q;
+          if(searchBy) data['searchBy'] = searchBy;
+
+          return HttpService.get(API_BASE_URL + 'page/sertifikat/getSertifikatBerlaku', data, "Get Data");
         },
-        getSertifikatTidakBerlaku: function () {
-          return HttpService.get(API_BASE_URL + 'page/sertifikat/getSertifikatTidakBerlaku', {}, "Get Data");
+        getSertifikatTidakBerlaku: function (page, q, searchBy) {
+          var data = {};
+          if(page) data['page'] = page.toString();
+          if(q) data['q'] = q;
+          if(searchBy) data['searchBy'] = searchBy;
+
+          return HttpService.get(API_BASE_URL + 'page/sertifikat/getSertifikatTidakBerlaku', data, "Get Data");
         },
-        getData: function () {
-          return HttpService.get(API_BASE_URL + 'page/sertifikat/getData', {}, "Get Data");
+        getData: function (page, q, searchBy) {
+          var data = {};
+          if(page) data['page'] = page.toString();
+          if(q) data['q'] = q;
+          if(searchBy) data['searchBy'] = searchBy;
+
+          return HttpService.get(API_BASE_URL + 'page/sertifikat/getData', data, "Get Data");
         },
-        getDataByLSPRO: function (idLSPRO) {
-          return HttpService.get(API_BASE_URL + 'page/sertifikat/getDataByLSPRO', { idLSPRO: idLSPRO }, "Get Data");
+        getDataByLSPRO: function (idLSPRO, page, q, searchBy) {
+          var data = {
+            idLSPRO: idLSPRO
+          };
+          if(page) data['page'] = page.toString();
+          if(q) data['q'] = q;
+          if(searchBy) data['searchBy'] = searchBy;
+
+          return HttpService.get(API_BASE_URL + 'page/sertifikat/getDataByLSPRO', data, "Get Data");
         },
         getPerusahaanOptions: function (idLSPRO) {
           return HttpService.get(API_BASE_URL + 'page/sertifikat/getPerusahaanOptions', { idLSPRO: idLSPRO }, "Get Penanggung Jawab");
@@ -37,6 +59,14 @@
             namaPabrik.push(item.text);
           });
           var formatDate = 'yyyy-MM-dd';
+
+          var getNoSNI = function (inputSNI) {
+            var noSNI = [];
+            angular.forEach(inputSNI, function (item) {
+              noSNI.push(item.id);
+            })
+            return noSNI.join(';');
+          }
           var data = {
             jenisProduk: input.jenisProduk,
             namaProduk: input.namaProduk,
@@ -44,7 +74,7 @@
             tipeProduk: input.tipeProduk,
             pJProduk: input.pJProduk.id_perusahaan,
             namaPabrik: namaPabrik.join(';'),
-            noSNI: input.sni.id,
+            noSNI: getNoSNI(input.sni),
             statusPenerapan: input.statusPenerapan.id,
             skemaSertifikasi: input.skemaSertifikasi,
             nomorSertifikat: input.nomorSertifikat,
@@ -59,6 +89,13 @@
             namaPabrik.push(item.text);
           });
           var formatDate = 'yyyy-MM-dd';
+          var getNoSNI = function (inputSNI) {
+            var noSNI = [];
+            angular.forEach(inputSNI, function (item) {
+              noSNI.push(item.id);
+            })
+            return noSNI.join(';');
+          }
           var data = {
             idMerk: input.idMerk,
             jenisProduk: input.jenisProduk,
@@ -67,7 +104,7 @@
             tipeProduk: input.tipeProduk,
             pJProduk: input.pJProduk.id_perusahaan,
             namaPabrik: namaPabrik.join(';'),
-            noSNI: input.sni.id,
+            noSNI: getNoSNI(input.sni),
             statusPenerapan: input.statusPenerapan.id,
             skemaSertifikasi: input.skemaSertifikasi,
             nomorSertifikat: input.nomorSertifikat,

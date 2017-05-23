@@ -37,6 +37,9 @@
                                 _this.$rootScope.roleName = response.roleName;
                             });
                         }
+                    },
+                    bodyInfinite: function(){
+                        console.log('infinite');
                     }
                 };
             },

@@ -13,6 +13,7 @@
       },
       var: {
         searchType: null,
+        q: null,
         searchTypeList: [{
           id: 'jenis_produk',
           text: 'Jenis Produk'
@@ -28,9 +29,6 @@
         }, {
           id: 'no_SNI',
           text: 'No. SNI'
-        }, {
-          id: 'judul_SNI',
-          text: 'Judul SNI'
         }, {
           id: 'no_sertifikat',
           text: 'No. Sertifikat'
@@ -73,7 +71,10 @@
       collection: {
         produk: {
           data: [],
-          isLoaded: false
+          isLoaded: false,
+          page: 1,
+          totalPage: 1,
+          totalRecord: 0,
         }
       }
     },
@@ -84,33 +85,87 @@
     methods: {
       _onInit: function () {
         var _this = this;
-        _this.onLoad().getData();
+        _this.collection.produk.page = 1;
+        _this.onLoad().getData(1);
+      },
+      onScroll: function () {
+        var _this = this;
+        return {
+          infiniteProduk: function () {
+            _this.collection.produk.page += 1;
+
+            if (_this.collection.produk.page <= _this.collection.produk.totalPage) {
+              if (_this.var.q != null || _this.var.q != '') {
+                if (_this.var.searchType == null) {
+                  _this.onLoad().getData(_this.collection.produk.page, _this.var.q);
+                } else {
+                  _this.onLoad().getData(_this.collection.produk.page, _this.var.q, _this.var.searchType.id);
+                }
+              } else {
+                _this.onLoad().getData(_this.collection.produk.page);
+              }
+            }
+          }
+        }
       },
       onLoad: function () {
         var _this = this;
         return {
-          getData: function () {
+          getData: function (page, q, searchBy) {
+            _this.collection.produk.isLoaded = false;
             if (_this.$rootScope.idRole == 4) {
               _this.PerusahaanService.getLSPRO(_this.$rootScope.idUser).then(function (response) {
                 if (response.data.length > 0) _this.var.idLSPRO = response.data[0].id_lspro;
                 else _this.var.idLSPRO = '';
 
-                _this.BarangService.getDataByLSPRO(_this.var.idLSPRO).then(function (response) {
-                  _this.collection.produk.data = response.data;
+                _this.BarangService.getDataByLSPRO(_this.var.idLSPRO, page, q, searchBy).then(function (response) {
+                  if (page == 1) _this.collection.produk.data = response.data;
+                  else _this.collection.produk.data = _this.collection.produk.data.concat(response.data);
                   _this.collection.produk.isLoaded = true;
+
+                  if (response.totalPage){
+                    _this.collection.produk.totalPage = response.totalPage;
+                    _this.collection.produk.totalRecord = response.totalRecord;
+                  }
                 });
               });
             } else {
               _this.var.idLSPRO = '';
               if (_this.$rootScope.idRole == 2) {
-                _this.BarangService.getSertifikatBerlaku().then(function (response) {
-                  _this.collection.produk.data = response.data;
-                  _this.collection.produk.isLoaded = true;
-                });
+                if (page == 1) _this.collection.produk.data = [];
+                if (_this.state.isBerlaku) {
+                  _this.BarangService.getSertifikatBerlaku(page, q, searchBy).then(function (response) {
+                    if (page == 1) _this.collection.produk.data = response.data;
+                    else _this.collection.produk.data = _this.collection.produk.data.concat(response.data);
+                    _this.collection.produk.isLoaded = true;
+
+                    if (response.totalPage){
+                      _this.collection.produk.totalPage = response.totalPage;
+                      _this.collection.produk.totalRecord = response.totalRecord;
+                    }
+                  });
+                } else {
+                  _this.BarangService.getSertifikatTidakBerlaku(page, q, searchBy).then(function (response) {
+                    if (page == 1) _this.collection.produk.data = response.data;
+                    else _this.collection.produk.data = _this.collection.produk.data.concat(response.data);
+                    _this.collection.produk.isLoaded = true;
+
+                    if (response.totalPage){
+                      _this.collection.produk.totalPage = response.totalPage;
+                      _this.collection.produk.totalRecord = response.totalRecord;
+                    }
+                  });
+                }
               } else {
-                _this.BarangService.getData().then(function (response) {
-                  _this.collection.produk.data = response.data;
+                _this.BarangService.getData(page, q, searchBy).then(function (response) {
+                  if (page == 1) _this.collection.produk.data = response.data;
+                  else _this.collection.produk.data = _this.collection.produk.data.concat(response.data);
                   _this.collection.produk.isLoaded = true;
+
+                  if (response.totalPage){
+                    _this.collection.produk.totalPage = response.totalPage;
+                    _this.collection.produk.totalRecord = response.totalRecord;
+                  }
                 });
               }
             }
@@ -134,21 +189,18 @@
       onClick: function () {
         var _this = this;
         return {
+          searchData: function(){
+            _this.collection.produk.page = 1;
+            if (_this.var.searchType == null) {
+              _this.onLoad().getData(_this.collection.produk.page, _this.var.q);
+            }else{
+              _this.onLoad().getData(_this.collection.produk.page, _this.var.q, _this.var.searchType.id);
+            }
+          },
           isBerlaku: function (condition) {
             _this.state.isBerlaku = condition;
-            _this.collection.produk.data = [];
-            _this.collection.produk.isLoaded = false;
-            if (condition) {
-              _this.BarangService.getSertifikatBerlaku().then(function (response) {
-                _this.collection.produk.data = response.data;
-                _this.collection.produk.isLoaded = true;
-              });
-            } else {
-              _this.BarangService.getSertifikatTidakBerlaku().then(function (response) {
-                _this.collection.produk.data = response.data;
-                _this.collection.produk.isLoaded = true;
-              });
-            }
+            _this.collection.produk.page = 1;
+            _this.onLoad().getData(1);
           },
           isAddSertifikat: function (condition) {
             _this.state.isAddSertifikat = condition;
@@ -161,7 +213,7 @@
                 tipeProduk: '',
                 pJProduk: '',
                 namaPabrik: '',
-                sni: '',
+                sni: [],
                 statusPenerapan: '',
                 skemaSertifikasi: '',
                 nomorSertifikat: '',
@@ -203,18 +255,12 @@
                 }
               }
 
+              _this.var.input.sni = _this.var.rowSelected.sni;
+
               _this.BarangService.getPerusahaanOptions(_this.var.idLSPRO).then(function (response) {
                 _this.var.options.perusahaanOptions = response.data;
                 var pJProdukIndex = _this.lodash.findIndex(_this.var.options.perusahaanOptions, { id_perusahaan: _this.var.rowSelected.id_perusahaan });
                 _this.var.input.pJProduk = _this.var.options.perusahaanOptions[pJProdukIndex];
-              });
-
-              _this.BarangService.getSNIOptions().then(function (response) {
-                _this.var.options.sniOptions = response.data;
-                var sniIndex = _this.lodash.findIndex(_this.var.options.sniOptions, { no_SNI: _this.var.rowSelected.no_SNI });
-                _this.var.input.sni = _this.var.options.sniOptions[sniIndex];
-                _this.var.input.sni.id = _this.var.input.sni.no_SNI;
-                _this.var.input.sni.text = _this.var.input.sni.judul_SNI;
               });
             }
           },
@@ -286,8 +332,9 @@
                       'merk': _this.var.input.merk,
                       'nama_penanggung_jawab': _this.var.input.pJProduk.nama_penanggung_jawab,
                       'alamat_penanggung_jawab': _this.var.input.pJProduk.alamat_penanggung_jawab,
-                      'no_SNI': _this.var.input.sni.no_SNI,
-                      'judul_SNI': _this.var.input.sni.judul_SNI,
+                      'sni': _this.var.input.sni,
+                      // 'no_SNI': _this.var.input.sni,
+                      // 'judul_SNI': _this.var.input.sni.judul_SNI,
                       'no_sertifikat': _this.var.input.nomorSertifikat,
                       'no_lisensi': '-',
                       'tgl_terbit_sertifikat': _this.var.input.masaBerlakuSertifikat.from,
@@ -307,8 +354,9 @@
                     _this.var.rowSelected.nama_pabrik = _this.var.input.namaPabrik;
                     _this.var.rowSelected.nama_penanggung_jawab = _this.var.input.pJProduk.nama_penanggung_jawab;
                     _this.var.rowSelected.alamat_penanggung_jawab = _this.var.input.pJProduk.alamat_penanggung_jawab;
-                    _this.var.rowSelected.no_SNI = _this.var.input.sni.no_SNI;
-                    _this.var.rowSelected.judul_SNI = _this.var.input.sni.judul_SNI;
+                    _this.var.rowSelected.sni = _this.var.input.sni;
+                    // _this.var.rowSelected.no_SNI = _this.var.input.sni.no_SNI;
+                    // _this.var.rowSelected.judul_SNI = _this.var.input.sni.judul_SNI;
                     _this.var.rowSelected.status_penerapan = _this.var.input.statusPenerapan;
                     _this.var.rowSelected.no_sertifikat = _this.var.input.nomorSertifikat;
                     _this.var.rowSelected.tgl_terbit_sertifikat = _this.var.input.masaBerlakuSertifikat.from;
@@ -325,7 +373,7 @@
                 _this.BarangService.submitAddLisensi(_this.var.rowSelected, _this.var.inputLisensi).then(function (response) {
                   if (response.success_message) {
                     _this.var.rowSelected.no_lisensi = _this.var.inputLisensi.nomorLisensi;
-                    _this.onClick().isAddLisensi(false);
+                    _this.state.isAddLisensi = false;
                   }
                 });
               }
@@ -333,7 +381,7 @@
                 _this.BarangService.submitEditLisensi(_this.var.rowSelected, _this.var.inputLisensi).then(function (response) {
                   if (response.success_message) {
                     _this.var.rowSelected.no_lisensi = _this.var.inputLisensi.nomorLisensi;
-                    _this.onClick().isEditLisensi(false);
+                    _this.state.isEditLisensi = false;
                   }
                 });
               }

@@ -5028,3 +5028,24 @@ md-datepicker {
 .select2-hidden-accessible {
   visibility: hidden;
 }
+
+.label {
+  cursor: default;
+}
+
+.scroller {
+    max-height: 370px;
+    overflow: auto;
+    position: relative;
+}
+
+.relativeContainer { position: relative; width: 500px; height: 166px; overflow: hidden; border: 1px solid green; }
+
+.fixedTB { position: absolute; left: 0px; top: 0px; z-index: 11;  }
+
+.leftContainer { position: absolute; left: 0px; top: 26px; height: 150px; overflow: hidden;  }
+
+.rightContainer { position: absolute; left: 71px; top: 0px; width: 429px; overflow: hidden; }
+
+.leftSBWrapper { position: relative; left: 0px; top: 0px; z-index: 10; }
+.topSBWrapper { position: relative; left: 0px; top: 0px; z-index: 10; }
