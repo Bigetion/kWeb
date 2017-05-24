@@ -13,6 +13,9 @@
   }])
     .service('BarangService', ['$http', 'HttpService', 'API_BASE_URL', '$filter', function ($http, HttpService, API_BASE_URL, $filter) {
       return {
+        getMultiSNI: function(noSNI){
+          return HttpService.get(API_BASE_URL + 'page/sertifikat/getMultiSNI', { noSNI: noSNI }, "Get SNI");
+        },
         getSertifikatBerlaku: function (page, q, searchBy) {
           var data = {};
           if(page) data['page'] = page.toString();

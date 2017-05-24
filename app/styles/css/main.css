@@ -5034,7 +5034,7 @@ md-datepicker {
 }
 
 .scroller {
-    max-height: 370px;
+    max-height: 400px;
     overflow: auto;
     position: relative;
 }
