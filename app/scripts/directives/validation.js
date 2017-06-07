@@ -52,7 +52,7 @@
           }
 
           if (attrs.isEmail && !invalid) {
-            if (/^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/.test(val)) {
+            if (/^[a-z]+[a-z0-9._]+@[a-z-]+\.[a-z.]{2,5}$/.test(val)) {
               ctrl.$setValidity('email', true);
             } else {
               ctrl.$setValidity('email', false);

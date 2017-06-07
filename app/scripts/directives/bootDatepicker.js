@@ -33,19 +33,19 @@
           dateDisabled: scope.disabled,
           formatYear: 'yy',
           maxDate: scope.maxDate || new Date(9999, 12, 31),
-          minDate: scope.minDate || new Date(),
+          minDate: scope.minDate || new Date(1990, 12, 31),
           startingDay: 1,
           showButtonBar: false
         }
 
         scope.$watch('maxDate', function () {
           scope.dateOptions.maxDate = scope.maxDate || new Date(9999, 12, 31);
-          scope.dateOptions.minDate = scope.minDate || new Date();
+          scope.dateOptions.minDate = scope.minDate || new Date(1990, 12, 31);
         });
 
         scope.$watch('minDate', function () {
           scope.dateOptions.maxDate = scope.maxDate || new Date(9999, 12, 31);
-          scope.dateOptions.minDate = scope.minDate || new Date();
+          scope.dateOptions.minDate = scope.minDate || new Date(1990, 12, 31);
         });
         // element.replaceWith($compile('<p class="input-group">\
         //   <input type="text" class="form-control" uib-datepicker-popup ng-model="$parent.ngModel" is-open="$parent.popup.opened" datepicker-options="$parent.dateOptions" ng-required="$parent.ngRequired" close-text="Close"/>\
