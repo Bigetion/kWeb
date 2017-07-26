@@ -31,8 +31,8 @@
             <tbody>
               <tr id="header">
                 <th style="min-width: 40px">No</th>
-                <th style="min-width: 150px" st-sort="jenis_produk">Jenis Produk</th>
-                <th style="min-width: 100px" st-sort="merk">Merk</th>
+                <th style="min-width: 150px;max-width: 200px;" st-sort="jenis_produk">Jenis Produk</th>
+                <th style="min-width: 100px;max-width: 200px;" st-sort="merk">Merk</th>
                 <th ng-if="idRole!=2" style="min-width: 250px" st-sort="nama_penanggung_jawab" class="col-xs-2">Nama Perusahaan</th>
                 <th ng-if="idRole!=2" style="min-width: 250px" st-sort="alamat_penanggung_jawab" class="col-xs-2">Alamat</th>
                 <th ng-if="idRole==5" style="min-width: 100px" st-sort="telp" class="col-xs-2">No. Telpon</th>
@@ -54,8 +54,8 @@
               </tr>
               <tr ng-repeat="row in rowCollectionProduk">
                 <td>{{$index+1 || '-'}}</td>
-                <td>{{row.jenis_produk || '-'}}</td>
-                <td>{{row.merk || '-'}}</td>
+                <td style="max-width: 300px;word-wrap: break-word;">{{row.jenis_produk || '-'}}</td>
+                <td style="max-width: 300px;word-wrap: break-word;">{{row.merk || '-'}}</td>
                 <td ng-if="idRole!=2">{{row.nama_penanggung_jawab || '-'}}</td>
                 <td ng-if="idRole!=2">{{row.alamat_penanggung_jawab || '-'}}</td>
                 <td ng-if="idRole==5">{{row.telp || '-'}}</td>
